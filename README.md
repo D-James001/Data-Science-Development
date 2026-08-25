@@ -1,4 +1,4 @@
-# 📊 Data Science Development: Applied Data Wrangling & Analysis
+# 📊 Data Science Development: Applied Data Wrangling & Analysis Portfolio
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/pandas-2.0%2B-150458.svg)](https://pandas.pydata.org/)
@@ -6,16 +6,17 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/status-active-success.svg)]()
 
-A structured, end-to-end data science laboratory exploring **data hygiene**, **exploratory data analysis (EDA)**, **missing data imputation strategies**, and **advanced conditional filtering** applied across socioeconomic, public health, and labor market datasets in Nigeria.
+An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation**, **advanced conditional filtering & anomaly detection**, and **multi-dimensional statistical aggregation** across socioeconomic, public health, and labor market datasets in Nigeria.
 
 ---
 
 ## 🧭 Activity Navigation Index
 
-| Module / Day | Topic & Core Focus | Target Dataset | Key Notebook |
-| :--- | :--- | :--- | :--- |
-| [**Activity 1 (Day 1)**](#-activity-1-day-1--missing-data-diagnostics--imputation-methodologies) | Ingestion, Null Counting, Listwise Deletion vs. Statistical & Categorical Imputation | `nigeria_unemployment_missing_data.csv` | [`day-1-data-wrangling.ipynb`](./day-1-data-wrangling.ipynb) |
-| [**Activity 2 (Day 2)**](#-activity-2-day-2--advanced-conditional-filtering--anomaly-auditing) | Compound Filtering, Policy Cohort Slicing, Vulnerability Subsetting, Anomaly Detection | `nigeria_economic_data.csv`<br>`nigeria_nursing_mothers_healthcare.csv`<br>`nigeria_unemployment_missing_data.csv` | [`day-2-data-wrangling & filtering.ipynb`](./day-2-data-wrangling%20%26%20filtering.ipynb) |
+| Module / Day | Topic & Core Focus | Applied Methodologies | Target Datasets | Notebook Link |
+| :--- | :--- | :--- | :--- | :--- |
+| [**Activity 1 (Day 1)**](#-activity-1-day-1--missing-data-diagnostics--imputation-methodologies) | **Data Hygiene & Imputation** | Ingestion, Null Diagnostics, Listwise Deletion vs. Mean & Explicit Categorical Imputation | `nigeria_unemployment_missing_data.csv` | [`day-1-data-wrangling.ipynb`](./day-1-data-wrangling.ipynb) |
+| [**Activity 2 (Day 2)**](#-activity-2-day-2--advanced-conditional-filtering--anomaly-auditing) | **Conditional Slicing & Auditing** | Compound Boolean Indexing (`&`, `\|`), Policy Slicing, Resource Allocation, Cross-Feature Auditing | `nigeria_economic_data.csv`<br>`nigeria_nursing_mothers_healthcare.csv`<br>`nigeria_unemployment_missing_data.csv` | [`day-2-data-wrangling & filtering.ipynb`](./day-2-data-wrangling%20%26%20filtering.ipynb) |
+| [**Activity 3 (Day 3)**](#-activity-3-day-3--data-aggregation-multi-dimensional-grouping--statistical-reporting) | **Aggregation & Statistical Reporting** | `.groupby()`, Multi-Level Grouping, Aggregation Engines (`.agg()`), Frequency Binning | `nigeria_economic_data.csv`<br>`nigeria_nursing_mothers_healthcare.csv`<br>`nigeria_unemployment_missing_data.csv` | [`day-3-data-aggregation.ipynb`](./day-3-data-aggregation.ipynb) |
 
 ---
 
@@ -23,8 +24,8 @@ A structured, end-to-end data science laboratory exploring **data hygiene**, **e
 
 In real-world data science, raw data rarely arrives clean, balanced, or modeling-ready. Just as a professional chef cannot cook unwashed, uninspected, or poorly measured ingredients straight from the market:
 
-- **Raw Ingredients = Raw Data**: Datasets often contain missing entries ("spoilage/rot"), inconsistent units, demographic contradictions, and survey anomalies.
-- **The Data Chef = The Data Scientist**: Responsible for inspecting every feature, assessing data hygiene, diagnosing *why* anomalies exist, and applying principled cleaning and filtering techniques before analytical modeling.
+- **Raw Ingredients = Raw Data**: Datasets contain missing entries ("spoilage/rot"), inconsistent units, demographic contradictions, and survey anomalies.
+- **The Data Chef = The Data Scientist**: Responsible for inspecting every feature, assessing data hygiene, diagnosing *why* anomalies exist, applying principled cleaning, slicing cohorts, and engineering aggregations before machine learning modeling.
 
 ---
 
@@ -33,11 +34,12 @@ In real-world data science, raw data rarely arrives clean, balanced, or modeling
 ```text
 ├── day-1-data-wrangling.ipynb                # Day 1: Ingestion, null diagnostics, and imputation experiments
 ├── day-2-data-wrangling & filtering.ipynb    # Day 2: Compound conditional filtering & anomaly detection
+├── day-3-data-aggregation.ipynb              # Day 3: Multi-dimensional grouping, aggregation & reporting
 ├── nigeria_unemployment_missing_data.csv     # Employment survey dataset with missing entries (5,000 rows)
 ├── nigeria_economic_data.csv                 # Socioeconomic indicators & poverty level classification (10,000 rows)
 ├── nigeria_nursing_mothers_healthcare.csv    # Maternal healthcare access & immunization metrics (10,000 rows)
 ├── .gitignore                                # Standard git ignore rules for Python & Jupyter artifacts
-└── README.md                                 # Comprehensive project documentation and activity log
+└── README.md                                 # Comprehensive project documentation and portfolio log
 ```
 
 ---
@@ -45,15 +47,15 @@ In real-world data science, raw data rarely arrives clean, balanced, or modeling
 ## 📊 Datasets Overview
 
 ### 1. `nigeria_unemployment_missing_data.csv` (5,000 Records)
-Demographic profiles, labor market engagement, and income data with realistic missingness patterns for data hygiene exercises.
+Demographic profiles, labor market engagement, and income data with realistic missingness patterns for data hygiene and labor dynamics exercises.
 - **Key Columns**: `Age`, `Gender`, `Region`, `Location` (Urban/Rural), `Education_Level`, `Employment_Status`, `Years_Of_Experience`, `Monthly_Income_NGN`.
 
 ### 2. `nigeria_economic_data.csv` (10,000 Records)
-Individual socioeconomic indicators, occupation classifications, employment arrangements, and poverty status.
+Individual socioeconomic indicators, occupation classifications, employment arrangements, monthly income, and poverty status classification.
 - **Key Columns**: `Individual_ID`, `Age`, `Gender`, `Region`, `Location`, `Education_Level`, `Occupation`, `Employment_Type`, `Monthly_Income_NGN`, `Poverty_Status`.
 
 ### 3. `nigeria_nursing_mothers_healthcare.csv` (10,000 Records)
-Demographic and healthcare access dataset examining delivery facilities, immunization coverage, and travel distance.
+Demographic and healthcare access dataset examining delivery facilities, immunization coverage, wealth quintiles, and travel distance to clinics.
 - **Key Columns**: `Geopolitical_Zone`, `Residence`, `Wealth_Quintile`, `Education_Level`, `Skilled_Birth_Attendance`, `Facility_Delivery`, `Exclusive_Breastfeeding`, `Full_Immunization`, `Distance_to_Facility_km`.
 
 ---
@@ -204,6 +206,128 @@ flowchart TD
 
 ---
 
+## 📈 Activity 3 (Day 3) — Data Aggregation, Multi-Dimensional Grouping & Statistical Reporting
+
+> **Notebook**: [`day-3-data-aggregation.ipynb`](./day-3-data-aggregation.ipynb)  
+> **Core Concepts**: `.groupby()`, Multi-Level Grouping ("Buckets within Buckets"), Multi-Metric `.agg()`, Frequency Sizing, Strategic Reporting
+
+### Workflow Overview
+
+```mermaid
+flowchart TD
+    subgraph A1[Scenario 1: Economic Returns to Education]
+        D1[Nigerian Economic Data] --> G1["groupby('Education_Level')['Monthly_Income_NGN'].mean()"]
+        G1 --> R1["Tertiary: ₦348.6k | Secondary: ₦122.2k | Primary: ₦38.7k"]
+    end
+    subgraph A2[Scenario 2: Healthcare Geographic Sizing]
+        D2[Nursing Mothers Data] --> F2["Filter: Wealth == 'Poorest'"]
+        F2 --> G2["groupby('Geopolitical_Zone').size()"]
+        G2 --> R2["North West Lead: 601 Mothers (26.6%)"]
+    end
+    subgraph A3[Scenario 3 & 4: Labor Market Dynamics & Gender Parity]
+        D3[Unemployment Survey] --> G3["groupby(['Employment_Status', 'Gender'])['Years_Of_Experience'].mean()"]
+        G3 --> R3["Gender Parity Confirmed across all Employment Tiers"]
+    end
+    subgraph A4[Scenario 5: Multi-Metric Report Card]
+        D4[Economic Dataset] --> G4["groupby('Education_Level')['Monthly_Income_NGN'].agg(['min', 'max', 'mean', 'count'])"]
+        G4 --> R4["Full Statistical Distribution & Wage Ceilings"]
+    end
+```
+
+---
+
+### Scenario 1: Economic Returns to Higher Education ("Does Education Pay Off?")
+- **Dataset**: `nigeria_economic_data.csv` (10,000 records)
+- **Analytical Objective**: Determine whether higher educational attainment translates to statistically significant income premiums in the Nigerian economy.
+- **Code Implementation**:
+  ```python
+  economy_data.groupby('Education_Level')['Monthly_Income_NGN'].mean().round(2)
+  ```
+- **Quantitative Findings**:
+  - **Primary Education**: **₦38,722.55 / month**
+  - **Secondary Education**: **₦122,211.60 / month** (3.15x higher than Primary)
+  - **Tertiary Education**: **₦348,555.70 / month** (9.00x higher than Primary, 2.85x higher than Secondary)
+  - **Takeaway**: Demonstrates steep exponential income scaling linked to higher education completion.
+
+---
+
+### Scenario 2: Resource Allocation & Geographic Prioritization for Nursing Mothers
+- **Dataset**: `nigeria_nursing_mothers_healthcare.csv` (10,000 records)
+- **Analytical Objective**: Identify the Nigerian geopolitical zone with the greatest concentration of vulnerable mothers in the lowest economic quintile (`Poorest`) to optimize NGO medical supply chains.
+- **Code Implementation**:
+  ```python
+  poorest_mothers = nursing_data[nursing_data['Wealth_Quintile'] == 'Poorest']
+  mothers_count_region = poorest_mothers.groupby('Geopolitical_Zone').size()
+  ```
+- **Quantitative Findings**:
+  - **North West**: **601 poorest mothers** (26.56% of total vulnerable cohort — highest priority)
+  - **South East**: **374 poorest mothers**
+  - **South West**: **363 poorest mothers**
+  - **North Central**: **332 poorest mothers**
+  - **North East**: **328 poorest mothers**
+  - **South South**: **324 poorest mothers**
+  - **Takeaway**: Directly informs non-profit resource allocation, establishing that medical outreach logistics must center on the North West zone.
+
+---
+
+### Scenario 3: Labor Market Experience Dynamics across Employment States
+- **Dataset**: `nigeria_unemployment_missing_data.csv` (5,000 records)
+- **Analytical Objective**: Investigate the relationship between professional experience and employment states (Employed, Underemployed, Unemployed).
+- **Code Implementation**:
+  ```python
+  exp_status = unemployment_data.groupby('Employment_Status')['Years_Of_Experience'].mean().round(2)
+  ```
+- **Quantitative Findings**:
+  - **Employed**: **21.72 years** average experience
+  - **Underemployed**: **22.38 years** average experience
+  - **Unemployed**: **20.83 years** average experience
+  - **Takeaway**: Rebuts the assumption that underemployment and unemployment stem purely from lack of experience. Underemployed individuals possess slightly higher average career longevity.
+
+---
+
+### Scenario 4: Hierarchical Multi-Level Grouping ("Buckets within Buckets" / Gender Equity)
+- **Dataset**: `nigeria_unemployment_missing_data.csv` (5,000 records)
+- **Analytical Objective**: Disaggregate employment tiers by gender to evaluate if experience distributions differ between men and women in the labor force.
+- **Code Implementation**:
+  ```python
+  exp_status_gender = unemployment_data.groupby(['Employment_Status', 'Gender'])['Years_Of_Experience'].mean().round(2)
+  ```
+- **Quantitative Findings**:
+  - **Employed**: Female (21.47 yrs) vs. Male (21.96 yrs)
+  - **Underemployed**: Female (22.39 yrs) vs. Male (22.37 yrs)
+  - **Unemployed**: Female (20.96 yrs) vs. Male (20.70 yrs)
+  - **Takeaway**: Validates consistent experience parity across genders within each employment tier.
+
+---
+
+### Scenario 5: Multi-Metric Statistical Profiling ("The Full Report Card")
+- **Dataset**: `nigeria_economic_data.csv` (10,000 records)
+- **Analytical Objective**: Move beyond single-metric averages to generate a multi-dimensional statistical profile capturing min, max, mean, and sample size across education tiers.
+- **Code Implementation**:
+  ```python
+  full_income_report = economy_data.groupby('Education_Level')['Monthly_Income_NGN'].agg(['min', 'max', 'mean', 'count']).round(2)
+  ```
+
+#### The Full Income Report Card Matrix
+
+| Education Level | Sample Size (`count`) | Minimum Income (`min`) | Maximum Income (`max`) | Mean Income (`mean`) | Economic Insight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Primary** | 2,953 | ₦0.00 | ₦764,691.33 | **₦38,722.55** | High baseline density; lowest earnings floor |
+| **Secondary** | 2,283 | ₦0.00 | ₦838,454.45 | **₦122,211.60** | 3.15x average income lift over Primary |
+| **Tertiary** | 768 | ₦0.00 | ₦2,341,233.81 | **₦348,555.70** | Earnings ceiling exceeds ₦2.34M (2.8x higher max) |
+
+---
+
+## 🧩 End-to-End Pipeline Synthesis (Days 1–3)
+
+| Stage | Activity | Key Challenge Solved | Primary Tool / Technique | Core Analytical Deliverable |
+| :--- | :--- | :--- | :--- | :--- |
+| **Phase 1** | **Data Hygiene & Imputation** | Handling missing entries without inducing attrition bias | `.isnull().sum()`, `.fillna()`, explicit classing | Cleaned baseline dataframe with 100% sample retention |
+| **Phase 2** | **Conditional Slicing & Auditing** | Isolating exact demographic cohorts & finding contradictions | Boolean compound masking (`&`, `\|`) | Policy subsets (working age, vulnerability) & 52 audit flags |
+| **Phase 3** | **Aggregation & Reporting** | Condensing granular rows into macro policy insights | `.groupby()`, `.agg()`, hierarchical grouping | Multi-metric ROI report cards & geographic allocation plan |
+
+---
+
 ## 🚀 Getting Started & Execution
 
 ### Prerequisites
@@ -230,7 +354,7 @@ pip install pandas numpy jupyter
 ```
 
 ### Running the Notebooks
-To explore each activity independently:
+Explore each activity independently:
 
 ```bash
 # Run Day 1: Missing Data Diagnostics & Imputation
@@ -238,18 +362,22 @@ jupyter notebook day-1-data-wrangling.ipynb
 
 # Run Day 2: Advanced Conditional Filtering & Anomaly Detection
 jupyter notebook "day-2-data-wrangling & filtering.ipynb"
+
+# Run Day 3: Multi-Dimensional Grouping & Statistical Aggregation
+jupyter notebook day-3-data-aggregation.ipynb
 ```
 
 ---
 
-## 🔮 Roadmap & Upcoming Activities
+## 🔮 Portfolio Roadmap & Upcoming Activities
 
 - [x] **Day 1**: Missing Data Diagnostics, Complete Case Deletion vs. Statistical & Categorical Imputation.
 - [x] **Day 2**: Compound Boolean Filtering, Policy Slicing, Vulnerability Subsetting, and Anomaly Auditing.
-- [ ] **Day 3**: Outlier Detection & Treatment (Interquartile Range - IQR, Z-Scores, Winsorization).
-- [ ] **Day 4**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
-- [ ] **Day 5**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
-- [ ] **Day 6**: Predictive Modeling on Maternal Health & Economic Determinants.
+- [x] **Day 3**: Multi-Dimensional Aggregation, Hierarchical Grouping, and Multi-Metric Report Cards.
+- [ ] **Day 4**: Outlier Detection & Treatment (Interquartile Range - IQR, Z-Scores, Winsorization).
+- [ ] **Day 5**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
+- [ ] **Day 6**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
+- [ ] **Day 7**: Predictive Modeling on Maternal Health & Economic Determinants.
 
 ---
 
