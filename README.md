@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/status-active-success.svg)]()
 
-An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation**, **advanced conditional filtering & anomaly detection**, and **multi-dimensional statistical aggregation** across socioeconomic, public health, and labor market datasets in Nigeria.
+An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, and **multi-dimensional statistical aggregation** across socioeconomic, public health, and labor market datasets in Nigeria.
 
 ---
 
@@ -17,6 +17,7 @@ An applied, portfolio-grade data science repository demonstrating **data hygiene
 | [**Activity 1 (Day 1)**](#-activity-1-day-1--missing-data-diagnostics--imputation-methodologies) | **Data Hygiene & Imputation** | Ingestion, Null Diagnostics, Listwise Deletion vs. Mean & Explicit Categorical Imputation | `nigeria_unemployment_missing_data.csv` | [`day-1-data-wrangling.ipynb`](./day-1-data-wrangling.ipynb) |
 | [**Activity 2 (Day 2)**](#-activity-2-day-2--advanced-conditional-filtering--anomaly-auditing) | **Conditional Slicing & Auditing** | Compound Boolean Indexing (`&`, `\|`), Policy Slicing, Resource Allocation, Cross-Feature Auditing | `nigeria_economic_data.csv`<br>`nigeria_nursing_mothers_healthcare.csv`<br>`nigeria_unemployment_missing_data.csv` | [`day-2-data-wrangling & filtering.ipynb`](./day-2-data-wrangling%20%26%20filtering.ipynb) |
 | [**Activity 3 (Day 3)**](#-activity-3-day-3--data-aggregation-multi-dimensional-grouping--statistical-reporting) | **Aggregation & Statistical Reporting** | `.groupby()`, Multi-Level Grouping, Aggregation Engines (`.agg()`), Frequency Binning | `nigeria_economic_data.csv`<br>`nigeria_nursing_mothers_healthcare.csv`<br>`nigeria_unemployment_missing_data.csv` | [`day-3-data-aggregation.ipynb`](./day-3-data-aggregation.ipynb) |
+| [**Activity 4 (Day 4)**](#-activity-4-day-4--deep-dive-missing-data-architecture-sentinel-evolution--advanced-imputation) | **Missing Data Architecture & Advanced Imputation** | Sentinel Evolution, Nullable `Int32`, Geography Pruning, Skewness & Median Imputation, Subgroup Fill | `nigeria_unemployment_missing_data.csv` | [`day-4-data-wrangling-and-missing-data.ipynb`](./day-4-data-wrangling-and-missing-data.ipynb) |
 
 ---
 
@@ -32,14 +33,15 @@ In real-world data science, raw data rarely arrives clean, balanced, or modeling
 ## 📁 Repository Structure
 
 ```text
-├── day-1-data-wrangling.ipynb                # Day 1: Ingestion, null diagnostics, and imputation experiments
-├── day-2-data-wrangling & filtering.ipynb    # Day 2: Compound conditional filtering & anomaly detection
-├── day-3-data-aggregation.ipynb              # Day 3: Multi-dimensional grouping, aggregation & reporting
-├── nigeria_unemployment_missing_data.csv     # Employment survey dataset with missing entries (5,000 rows)
-├── nigeria_economic_data.csv                 # Socioeconomic indicators & poverty level classification (10,000 rows)
-├── nigeria_nursing_mothers_healthcare.csv    # Maternal healthcare access & immunization metrics (10,000 rows)
-├── .gitignore                                # Standard git ignore rules for Python & Jupyter artifacts
-└── README.md                                 # Comprehensive project documentation and portfolio log
+├── day-1-data-wrangling.ipynb                    # Day 1: Ingestion, null diagnostics, and imputation experiments
+├── day-2-data-wrangling & filtering.ipynb        # Day 2: Compound conditional filtering & anomaly detection
+├── day-3-data-aggregation.ipynb                  # Day 3: Multi-dimensional grouping, aggregation & reporting
+├── day-4-data-wrangling-and-missing-data.ipynb   # Day 4: Missing data architecture, sentinel theory & advanced imputation
+├── nigeria_unemployment_missing_data.csv         # Employment survey dataset with missing entries (5,000 rows)
+├── nigeria_economic_data.csv                     # Socioeconomic indicators & poverty level classification (10,000 rows)
+├── nigeria_nursing_mothers_healthcare.csv        # Maternal healthcare access & immunization metrics (10,000 rows)
+├── .gitignore                                    # Standard git ignore rules for Python & Jupyter artifacts
+└── README.md                                     # Comprehensive project documentation and portfolio log
 ```
 
 ---
@@ -318,13 +320,126 @@ flowchart TD
 
 ---
 
-## 🧩 End-to-End Pipeline Synthesis (Days 1–3)
+## 🛠️ Activity 4 (Day 4) — Deep-Dive Missing Data Architecture, Sentinel Evolution & Advanced Imputation
+
+> **Notebook**: [`day-4-data-wrangling-and-missing-data.ipynb`](./day-4-data-wrangling-and-missing-data.ipynb)  
+> **Core Concepts**: Masking vs. Sentinel Representation, IEEE 754 `NaN` Floating-Point Coercion, The NaN "Virus Effect", Modern Nullable `Int32`/`boolean` (`pd.NA`), Geography Pruning, Skewness-Driven Imputation (Mean vs. Median), Group-Based Conditional Imputation
+
+### Workflow Overview
+
+```mermaid
+flowchart TD
+    A[Raw Unemployment Dataset: 5,000 Records] --> B[Full Column Missingness Audit]
+    B --> C{Strategic Treatment by Feature Type}
+    C -->|1. Non-Imputable Geography| D["Pruning: dropna(subset=['Region', 'Location'])"]
+    D --> E[Clean Spatial Baseline: 4,750 Rows - 250 Pruned]
+    C -->|2. Categorical Variable| F["Class Preservation: fillna('Unspecified')"]
+    F --> G[Education_Level Retained with Full Variance]
+    C -->|3. Skewed Continuous Variable| H[Distribution Check: Mean ₦58.1k vs. Median ₦42.9k]
+    H --> I[Median Imputation Selected to Resist Outlier Distortion]
+    C -->|4. Group-Dependent Metric| J["Subgroup Mean Fill: groupby('Employment_Status')['Experience']"]
+    J --> K[Employed: 21.72 yrs | Underemployed: 22.38 yrs | Unemployed: 20.83 yrs]
+    E --> L[Production-Ready Imputed Dataset]
+    G --> L
+    I --> L
+    K --> L
+```
+
+---
+
+### Theoretical Architecture: The Evolution of Missingness in Python & Pandas
+
+#### 1. Masking vs. Sentinel Placeholders
+- **The Masking Approach**: Allocating an auxiliary boolean array alongside the dataset to flag valid vs. missing cells (high memory footprint, robust type preservation).
+- **The Sentinel Approach**: Inserting a reserved placeholder directly inside data structures (e.g., `-9999`, `None`, `np.nan`).
+
+#### 2. The Floating-Point Coercion & "Virus Effect" of `NaN`
+In standard NumPy and legacy Pandas, `np.nan` is an IEEE 754 floating-point value. This introduced two major engineering challenges:
+1. **Type Coercion**: Adding a single missing value to an integer column automatically upcasted the entire column from `int64` to `float64`.
+2. **The "Virus Effect"**: Any standard mathematical operation involving `np.nan` evaluates strictly to `nan`:
+   $$\sum (1, \text{nan}, 3, 4) \rightarrow \text{nan} \quad \text{versus} \quad \text{np.nansum}() \rightarrow 8.0$$
+
+#### 3. Modern Pandas Nullable Data Types (`pd.NA`)
+Pandas introduced first-class nullable types (`Int32`, `Int64`, `boolean`, `string`) utilizing a dedicated missingness scalar (`<NA>` / `pd.NA`), enabling true integer and boolean storage without float coercion:
+```python
+nullable_series = pd.Series([1, np.nan, 2, None, pd.NA], dtype='Int32')
+# Output: [1, <NA>, 2, <NA>, <NA>], dtype: Int32
+```
+
+---
+
+### Mental Models & Root Cause Taxonomy in Machine Learning
+
+| Missingness Mechanism | Root Cause & Context | Analytical Risk | Prescribed Strategy |
+| :--- | :--- | :--- | :--- |
+| **Missing by Accident (MCAR)** | Random sensor failure, transmission packet loss | Minimal systematic bias; sample size reduction | Statistical imputation (Mean/Median/KNN) |
+| **Missing by Logic / Nature (MAR)** | Survey questions that conditionally do not apply to respondent | Systematic bias if dropped | Conditional subgroup imputation or structural zeroing |
+| **Missing on Purpose (MNAR)** | Sensitive disclosures (income, wealth, evasiveness) | Heavy truncation bias | Explicit class preservation (`'Unspecified'`) |
+
+---
+
+### Step-by-Step Hands-On Imputation Framework
+
+#### Step 1: Column-by-Column Missingness Audit
+```python
+print(unemp_data.isnull().sum())
+```
+- Total initial rows: **5,000**
+- Missing counts: `Education_Level` (1,127), `Years_Of_Experience` (500), `Monthly_Income_NGN` (408), `Region` (250).
+
+#### Step 2: Critical Feature Pruning (Row Dropping)
+- **Rationale**: Imputing or guessing geographical identifiers (`Region`, `Location`) fabricates non-existent geospatial data.
+- **Action**: Pruned observations where location coordinates were missing.
+  ```python
+  clean_location_data = unemp_data.dropna(subset=['Region', 'Location'])
+  ```
+- **Outcome**: Preserved **4,750 high-integrity observations** (exactly 250 incomplete rows pruned).
+
+#### Step 3: Distribution Skewness & Central Tendency Evaluation
+- **Analysis**: Calculated central tendency metrics for `Monthly_Income_NGN`:
+  - **Median Income**: **₦42,908.88**
+  - **Mean Income**: **₦58,114.54** (35.4% higher than median)
+- **Visual Diagnostics**: Fitted a histogram with Kernel Density Estimation (KDE), revealing severe right-skewness driven by high-earning outliers.
+- **Methodological Choice**: Median imputation is strictly preferred over mean imputation for right-skewed variables to prevent artificial upward inflation of income baselines.
+
+#### Step 4: Explicit Categorical Class Preservation
+- Preserved missing `Education_Level` records by mapping them to `'Unspecified'`, preventing data fabrication while retaining observations for non-education downstream models:
+  ```python
+  unemp_data['Education_Level'] = unemp_data['Education_Level'].fillna('Unspecified')
+  ```
+
+#### Step 5: Group-Based Conditional Imputation
+- Rather than assigning a global population mean to all missing experience entries, calculated and applied conditional subgroup averages based on `Employment_Status`:
+  ```python
+  group_experience = unemp_data.groupby('Employment_Status')['Years_Of_Experience'].mean().round(2)
+  unemp_data['Years_Of_Experience'] = unemp_data['Years_Of_Experience'].fillna(group_experience)
+  ```
+- **Subgroup Means Preserved**:
+  - **Employed**: **21.72 years**
+  - **Underemployed**: **22.38 years**
+  - **Unemployed**: **20.83 years**
+
+---
+
+### Activity 4 Results Matrix
+
+| Pipeline Stage | Applied Technique | Target Variable | Dataset Size Before $\rightarrow$ After | Methodological Justification |
+| :--- | :--- | :--- | :--- | :--- |
+| **1. Geography Pruning** | `dropna(subset=['Region', 'Location'])` | `Region`, `Location` | 5,000 $\rightarrow$ **4,750** rows | Eliminates geospatial fabrication |
+| **2. Skewness Assessment** | Median Imputation (₦42.9k) | `Monthly_Income_NGN` | 408 missing $\rightarrow$ **0 missing** | Resists right-skewed outlier inflation |
+| **3. Categorical Patch** | `.fillna('Unspecified')` | `Education_Level` | 1,127 missing $\rightarrow$ **0 missing** | Prevents synthetic educational histories |
+| **4. Group Imputation** | `.groupby('Employment_Status').mean()` | `Years_Of_Experience` | 500 missing $\rightarrow$ **0 missing** | Preserves intra-cohort career variance |
+
+---
+
+## 🧩 End-to-End Pipeline Synthesis (Days 1–4)
 
 | Stage | Activity | Key Challenge Solved | Primary Tool / Technique | Core Analytical Deliverable |
 | :--- | :--- | :--- | :--- | :--- |
-| **Phase 1** | **Data Hygiene & Imputation** | Handling missing entries without inducing attrition bias | `.isnull().sum()`, `.fillna()`, explicit classing | Cleaned baseline dataframe with 100% sample retention |
-| **Phase 2** | **Conditional Slicing & Auditing** | Isolating exact demographic cohorts & finding contradictions | Boolean compound masking (`&`, `\|`) | Policy subsets (working age, vulnerability) & 52 audit flags |
+| **Phase 1** | **Baseline Hygiene & Diagnostics** | Initial missingness quantification & listwise deletion cost | `.isnull().sum()`, `.dropna()` | Identified 39.6% row loss risk in complete case deletion |
+| **Phase 2** | **Conditional Slicing & Auditing** | Isolating demographic cohorts & detecting contradictions | Compound boolean masking (`&`, `\|`) | Sliced 4,923 working-age adults; 1,866 priority mothers; 52 audit flags |
 | **Phase 3** | **Aggregation & Reporting** | Condensing granular rows into macro policy insights | `.groupby()`, `.agg()`, hierarchical grouping | Multi-metric ROI report cards & geographic allocation plan |
+| **Phase 4** | **Architectural Imputation** | Handling skewness, sentinel evolution & subgroup variance | Nullable `Int32`, median patching, group-based fill | Production-grade clean dataframe with zero geospatial or statistical drift |
 
 ---
 
@@ -333,7 +448,7 @@ flowchart TD
 ### Prerequisites
 - Python 3.8+
 - Jupyter Notebook / JupyterLab or VS Code Jupyter Extension
-- Required packages: `pandas`, `numpy`
+- Required packages: `pandas`, `numpy`, `matplotlib`, `seaborn`
 
 ### Installation & Environment Setup
 ```bash
@@ -350,14 +465,14 @@ python -m venv venv
 source venv/bin/activate
 
 # 3. Install dependencies
-pip install pandas numpy jupyter
+pip install pandas numpy matplotlib seaborn jupyter
 ```
 
 ### Running the Notebooks
 Explore each activity independently:
 
 ```bash
-# Run Day 1: Missing Data Diagnostics & Imputation
+# Run Day 1: Missing Data Diagnostics & Baseline Imputation
 jupyter notebook day-1-data-wrangling.ipynb
 
 # Run Day 2: Advanced Conditional Filtering & Anomaly Detection
@@ -365,6 +480,9 @@ jupyter notebook "day-2-data-wrangling & filtering.ipynb"
 
 # Run Day 3: Multi-Dimensional Grouping & Statistical Aggregation
 jupyter notebook day-3-data-aggregation.ipynb
+
+# Run Day 4: Missing Data Architecture, Sentinel Theory & Advanced Imputation
+jupyter notebook day-4-data-wrangling-and-missing-data.ipynb
 ```
 
 ---
@@ -374,10 +492,11 @@ jupyter notebook day-3-data-aggregation.ipynb
 - [x] **Day 1**: Missing Data Diagnostics, Complete Case Deletion vs. Statistical & Categorical Imputation.
 - [x] **Day 2**: Compound Boolean Filtering, Policy Slicing, Vulnerability Subsetting, and Anomaly Auditing.
 - [x] **Day 3**: Multi-Dimensional Aggregation, Hierarchical Grouping, and Multi-Metric Report Cards.
-- [ ] **Day 4**: Outlier Detection & Treatment (Interquartile Range - IQR, Z-Scores, Winsorization).
-- [ ] **Day 5**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
-- [ ] **Day 6**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
-- [ ] **Day 7**: Predictive Modeling on Maternal Health & Economic Determinants.
+- [x] **Day 4**: Missing Data Architecture, Sentinel Evolution, Skewness Imputation, and Subgroup Mean Patching.
+- [ ] **Day 5**: Outlier Detection & Treatment (Interquartile Range - IQR, Z-Scores, Winsorization).
+- [ ] **Day 6**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
+- [ ] **Day 7**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
+- [ ] **Day 8**: Predictive Modeling on Maternal Health & Economic Determinants.
 
 ---
 
