@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/status-active-success.svg)]()
 
-An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, and **multi-dimensional statistical aggregation** across socioeconomic, public health, and labor market datasets in Nigeria.
+An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, **multi-dimensional statistical aggregation**, and **domain-driven outlier engineering** across socioeconomic, public health, labor market, and real estate datasets.
 
 ---
 
@@ -18,6 +18,7 @@ An applied, portfolio-grade data science repository demonstrating **data hygiene
 | [**Activity 2 (Day 2)**](#-activity-2-day-2--advanced-conditional-filtering--anomaly-auditing) | **Conditional Slicing & Auditing** | Compound Boolean Indexing (`&`, `\|`), Policy Slicing, Resource Allocation, Cross-Feature Auditing | `nigeria_economic_data.csv`<br>`nigeria_nursing_mothers_healthcare.csv`<br>`nigeria_unemployment_missing_data.csv` | [`day-2-data-wrangling & filtering.ipynb`](./day-2-data-wrangling%20%26%20filtering.ipynb) |
 | [**Activity 3 (Day 3)**](#-activity-3-day-3--data-aggregation-multi-dimensional-grouping--statistical-reporting) | **Aggregation & Statistical Reporting** | `.groupby()`, Multi-Level Grouping, Aggregation Engines (`.agg()`), Frequency Binning | `nigeria_economic_data.csv`<br>`nigeria_nursing_mothers_healthcare.csv`<br>`nigeria_unemployment_missing_data.csv` | [`day-3-data-aggregation.ipynb`](./day-3-data-aggregation.ipynb) |
 | [**Activity 4 (Day 4)**](#-activity-4-day-4--deep-dive-missing-data-architecture-sentinel-evolution--advanced-imputation) | **Missing Data Architecture & Advanced Imputation** | Sentinel Evolution, Nullable `Int32`, Geography Pruning, Skewness & Median Imputation, Subgroup Fill | `nigeria_unemployment_missing_data.csv` | [`day-4-data-wrangling-and-missing-data.ipynb`](./day-4-data-wrangling-and-missing-data.ipynb) |
+| [**Activity 5 (Day 5)**](#-activity-5-day-5--exploratory-data-analysis-for-outlier-detection-spatial-engineering--domain-driven-filtration) | **Outlier Detection & Domain-Driven Filtration** | Multi-Stage Pipelines (1–5), Continuous Range Parsing, Feature Engineering (`bhk`, `price_per_sqft`), Domain Thresholding | `house_prices.csv` | [`day-5-outlier-outlier-detection.ipynb`](./day-5-outlier-outlier-detection.ipynb) |
 
 ---
 
@@ -25,8 +26,8 @@ An applied, portfolio-grade data science repository demonstrating **data hygiene
 
 In real-world data science, raw data rarely arrives clean, balanced, or modeling-ready. Just as a professional chef cannot cook unwashed, uninspected, or poorly measured ingredients straight from the market:
 
-- **Raw Ingredients = Raw Data**: Datasets contain missing entries ("spoilage/rot"), inconsistent units, demographic contradictions, and survey anomalies.
-- **The Data Chef = The Data Scientist**: Responsible for inspecting every feature, assessing data hygiene, diagnosing *why* anomalies exist, applying principled cleaning, slicing cohorts, and engineering aggregations before machine learning modeling.
+- **Raw Ingredients = Raw Data**: Datasets contain missing entries ("spoilage/rot"), inconsistent units, demographic contradictions, formatting range strings, and physical anomalies.
+- **The Data Chef = The Data Scientist**: Responsible for inspecting every feature, assessing data hygiene, diagnosing *why* anomalies exist, applying principled cleaning, slicing cohorts, engineering aggregations, and isolating outliers before machine learning modeling.
 
 ---
 
@@ -37,6 +38,7 @@ In real-world data science, raw data rarely arrives clean, balanced, or modeling
 ├── day-2-data-wrangling & filtering.ipynb        # Day 2: Compound conditional filtering & anomaly detection
 ├── day-3-data-aggregation.ipynb                  # Day 3: Multi-dimensional grouping, aggregation & reporting
 ├── day-4-data-wrangling-and-missing-data.ipynb   # Day 4: Missing data architecture, sentinel theory & advanced imputation
+├── day-5-outlier-outlier-detection.ipynb         # Day 5: Multi-stage pipeline architecture & domain outlier filtration
 ├── nigeria_unemployment_missing_data.csv         # Employment survey dataset with missing entries (5,000 rows)
 ├── nigeria_economic_data.csv                     # Socioeconomic indicators & poverty level classification (10,000 rows)
 ├── nigeria_nursing_mothers_healthcare.csv        # Maternal healthcare access & immunization metrics (10,000 rows)
@@ -59,6 +61,10 @@ Individual socioeconomic indicators, occupation classifications, employment arra
 ### 3. `nigeria_nursing_mothers_healthcare.csv` (10,000 Records)
 Demographic and healthcare access dataset examining delivery facilities, immunization coverage, wealth quintiles, and travel distance to clinics.
 - **Key Columns**: `Geopolitical_Zone`, `Residence`, `Wealth_Quintile`, `Education_Level`, `Skilled_Birth_Attendance`, `Facility_Delivery`, `Exclusive_Breastfeeding`, `Full_Immunization`, `Distance_to_Facility_km`.
+
+### 4. `house_prices.csv` (13,320 Records)
+Real estate and residential property transaction dataset with mixed string formats, range-based square footage, bathroom configurations, and pricing distributions.
+- **Key Columns**: `area_type`, `availability`, `location`, `size` (e.g. `'2 BHK'`, `'4 Bedroom'`), `society`, `total_sqft` (e.g. `'1056'`, `'2100 - 2850'`), `bath`, `balcony`, `price`.
 
 ---
 
@@ -381,19 +387,12 @@ nullable_series = pd.Series([1, np.nan, 2, None, pd.NA], dtype='Int32')
 ### Step-by-Step Hands-On Imputation Framework
 
 #### Step 1: Column-by-Column Missingness Audit
-```python
-print(unemp_data.isnull().sum())
-```
 - Total initial rows: **5,000**
 - Missing counts: `Education_Level` (1,127), `Years_Of_Experience` (500), `Monthly_Income_NGN` (408), `Region` (250).
 
 #### Step 2: Critical Feature Pruning (Row Dropping)
-- **Rationale**: Imputing or guessing geographical identifiers (`Region`, `Location`) fabricates non-existent geospatial data.
-- **Action**: Pruned observations where location coordinates were missing.
-  ```python
-  clean_location_data = unemp_data.dropna(subset=['Region', 'Location'])
-  ```
-- **Outcome**: Preserved **4,750 high-integrity observations** (exactly 250 incomplete rows pruned).
+- **Action**: Pruned observations where location coordinates were missing (`dropna(subset=['Region', 'Location'])`).
+- **Outcome**: Preserved **4,750 high-integrity observations** (exactly 250 incomplete rows pruned) to prevent geospatial hallucinations.
 
 #### Step 3: Distribution Skewness & Central Tendency Evaluation
 - **Analysis**: Calculated central tendency metrics for `Monthly_Income_NGN`:
@@ -403,18 +402,10 @@ print(unemp_data.isnull().sum())
 - **Methodological Choice**: Median imputation is strictly preferred over mean imputation for right-skewed variables to prevent artificial upward inflation of income baselines.
 
 #### Step 4: Explicit Categorical Class Preservation
-- Preserved missing `Education_Level` records by mapping them to `'Unspecified'`, preventing data fabrication while retaining observations for non-education downstream models:
-  ```python
-  unemp_data['Education_Level'] = unemp_data['Education_Level'].fillna('Unspecified')
-  ```
+- Preserved missing `Education_Level` records by mapping them to `'Unspecified'` (`.fillna('Unspecified')`).
 
 #### Step 5: Group-Based Conditional Imputation
-- Rather than assigning a global population mean to all missing experience entries, calculated and applied conditional subgroup averages based on `Employment_Status`:
-  ```python
-  group_experience = unemp_data.groupby('Employment_Status')['Years_Of_Experience'].mean().round(2)
-  unemp_data['Years_Of_Experience'] = unemp_data['Years_Of_Experience'].fillna(group_experience)
-  ```
-- **Subgroup Means Preserved**:
+- Applied conditional subgroup averages based on `Employment_Status`:
   - **Employed**: **21.72 years**
   - **Underemployed**: **22.38 years**
   - **Unemployed**: **20.83 years**
@@ -432,14 +423,112 @@ print(unemp_data.isnull().sum())
 
 ---
 
-## 🧩 End-to-End Pipeline Synthesis (Days 1–4)
+## 🔍 Activity 5 (Day 5) — Exploratory Data Analysis for Outlier Detection, Spatial Engineering & Domain-Driven Filtration
+
+> **Notebook**: [`day-5-outlier-outlier-detection.ipynb`](./day-5-outlier-outlier-detection.ipynb)  
+> **Core Concepts**: Multi-Stage DataFrame Pipelines (1–5), Continuous Range Parsing, Feature Engineering (`bhk`, `price_per_sqft`), Domain-Driven Architectural Thresholding, Outlier Pruning
+
+### Workflow Overview
+
+```mermaid
+flowchart TD
+    A[Raw Housing Dataset: 13,320 Records] --> P1[Pipeline 1: Dimension Pruning]
+    P1 --> P2[Pipeline 2: Null Removal & BHK Extraction]
+    P2 --> P3[Pipeline 3: String Range Parsing into Float]
+    P3 --> P4[Pipeline 4: Price per Sqft Engineering]
+    P4 --> P5["Pipeline 5: Domain Outlier Detection (total_sqft / bhk < 300)"]
+    P5 --> B[Spotting the Black Sheep: 744 Physical Impossibilities Pruned]
+    B --> C[Clean Production Dataset: 12,502 Valid Properties]
+```
+
+---
+
+### Theoretical Foundation: Spotting the "Black Sheep" (Good vs. Bad Outliers)
+In exploratory data analysis and predictive modeling, outliers represent observations that deviate substantially from the central data distribution:
+- **Bad Outliers (Errors & Impossibilities)**: Typos, misplaced decimals, contradictory units (e.g., an 8-bedroom house fitting into 600 total square feet = 75 sqft/room). If left untreated, linear models and neural networks will fit spurious gradients to these physical anomalies.
+- **Good Outliers (Genuine Rare Events)**: Legitimate luxury estates (e.g., a 10,000 sqft mansion priced at ₦500M). These should be retained or capped rather than indiscriminately discarded.
+
+---
+
+### The 5-Stage DataFrame Pipeline Architecture
+
+```mermaid
+flowchart LR
+    D0["Raw Data (13,320)"] --> D1["Pipeline 1: Drop Noisy Cols (13,320)"]
+    D1 --> D2["Pipeline 2: Drop NA & Add bhk (13,246)"]
+    D2 --> D3["Pipeline 3: Parse total_sqft Ranges (13,246)"]
+    D3 --> D4["Pipeline 4: Add price_per_sqft (13,246)"]
+    D4 --> D5["Pipeline 5: Prune Outliers < 300 sqft/bhk (12,502)"]
+```
+
+#### Pipeline 1 (`housing_data_one`): Feature Selection & Dimension Pruning
+- **Action**: Evaluated property pricing relevance with real estate domain experts and pruned 4 non-predictive/noisy attributes (`area_type`, `availability`, `society`, `balcony`).
+- **Retained Features**: `location`, `size`, `total_sqft`, `bath`, `price`.
+
+#### Pipeline 2 (`housing_data_two`): Null Removal & Room Feature Engineering (`bhk`)
+- **Missing Value Handling**: Dropped sparse rows containing null values (`location`: 1, `size`: 16, `bath`: 73), yielding **13,246 clean rows**.
+- **Feature Extraction**: Extracted integer bedroom count (`bhk`) from heterogeneous string categories (`'2 BHK'`, `'4 Bedroom'`, `'1 RK'`):
+  ```python
+  housing_data_two['bhk'] = housing_data_two['size'].apply(lambda x: int(x.split(' ')[0]))
+  ```
+
+#### Pipeline 3 (`housing_data_three`): Continuous Range Parsing into Floats
+- **Challenge**: The `total_sqft` column contained mixed string representations including dashed ranges (`'2100 - 2850'`), metric units (`'34.46Sq. Meter'`), and acreage (`'5.31Acres'`).
+- **Parsing Engine**: Built a conversion function averaging range intervals and casting plain numerical strings to `float64`:
+  ```python
+  def convert_sqft_to_num(x):
+      tokens = x.split('-')
+      if len(tokens) == 2:
+          return (float(tokens[0]) + float(tokens[1])) / 2
+      try:
+          return float(x)
+      except:
+          return None
+
+  housing_data_three['total_sqft'] = housing_data_three['total_sqft'].apply(convert_sqft_to_num)
+  ```
+
+#### Pipeline 4 (`housing_data_four`): Standardized Unit Pricing (`price_per_sqft`)
+- **Metric Engineering**: Calculated standardized price per square foot across all locations to evaluate pricing consistency:
+  ```python
+  housing_data_four['price_per_sqft(100)'] = housing_data_four['price'] * 100 / housing_data_four['total_sqft']
+  ```
+
+#### Pipeline 5 (`housing_data_five`): Domain-Driven Architectural Outlier Filtration
+- **Domain Knowledge Rule**: In standard civil engineering and architecture, a standard bedroom requires a baseline minimum of **$\approx 300\text{ sqft}$** of total built area (including hallway, bathroom, and kitchen distribution).
+- **Anomaly Detection Logic**: Flagged and removed properties violating this physical threshold:
+  ```python
+  # Filter out properties where average square footage per bedroom is under 300 sqft
+  housing_data_five = housing_data_five[~(housing_data_five['total_sqft'] / housing_data_five['bhk'] < 300)]
+  ```
+- **Quantitative Result**:
+  - Properties before filtration: **13,246**
+  - Impossible anomalous properties identified: **744 records** (e.g., 6 bedrooms in 1,020 sqft, 8 bedrooms in 600 sqft)
+  - Final Clean Production Dataset: **12,502 high-integrity records**
+
+---
+
+### Activity 5 Results Matrix
+
+| Pipeline Stage | Operation / Transformation | Feature Affected | Observations | Analytical Rationale |
+| :--- | :--- | :--- | :--- | :--- |
+| **Pipeline 1** | Feature Pruning | `area_type`, `society`, etc. | 13,320 rows | Eliminates high-sparsity & noisy features |
+| **Pipeline 2** | `bhk` Feature Engineering | `size` $\rightarrow$ `bhk` (int) | 13,246 rows | Extracts numerical room capacity |
+| **Pipeline 3** | String Range Conversion | `total_sqft` (float) | 13,246 rows | Averages range intervals (e.g., 2100–2850 $\rightarrow$ 2475) |
+| **Pipeline 4** | Unit Metric Engineering | `price_per_sqft` | 13,246 rows | Normalizes price across property sizes |
+| **Pipeline 5** | Domain Outlier Pruning | $\frac{\text{total\_sqft}}{\text{bhk}} \ge 300$ | **12,502 rows** | **Removes 744 physical/architectural anomalies** |
+
+---
+
+## 🧩 End-to-End Pipeline Synthesis (Days 1–5)
 
 | Stage | Activity | Key Challenge Solved | Primary Tool / Technique | Core Analytical Deliverable |
 | :--- | :--- | :--- | :--- | :--- |
-| **Phase 1** | **Baseline Hygiene & Diagnostics** | Initial missingness quantification & listwise deletion cost | `.isnull().sum()`, `.dropna()` | Identified 39.6% row loss risk in complete case deletion |
+| **Phase 1** | **Baseline Hygiene & Diagnostics** | Initial missingness quantification & listwise deletion cost | `.isnull().sum()`, `.dropna()` | Quantified 39.6% row loss risk in complete case deletion |
 | **Phase 2** | **Conditional Slicing & Auditing** | Isolating demographic cohorts & detecting contradictions | Compound boolean masking (`&`, `\|`) | Sliced 4,923 working-age adults; 1,866 priority mothers; 52 audit flags |
 | **Phase 3** | **Aggregation & Reporting** | Condensing granular rows into macro policy insights | `.groupby()`, `.agg()`, hierarchical grouping | Multi-metric ROI report cards & geographic allocation plan |
-| **Phase 4** | **Architectural Imputation** | Handling skewness, sentinel evolution & subgroup variance | Nullable `Int32`, median patching, group-based fill | Production-grade clean dataframe with zero geospatial or statistical drift |
+| **Phase 4** | **Architectural Imputation** | Handling skewness, sentinel evolution & subgroup variance | Nullable `Int32`, median patching, group-based fill | Production-grade clean dataframe with zero statistical drift |
+| **Phase 5** | **Domain-Driven Outlier Engineering** | Detecting physical impossibilities & non-standard ranges | Range parsers, `price_per_sqft`, domain thresholding | Removed 744 spatial anomalies; produced 12,502 clean records |
 
 ---
 
@@ -483,6 +572,9 @@ jupyter notebook day-3-data-aggregation.ipynb
 
 # Run Day 4: Missing Data Architecture, Sentinel Theory & Advanced Imputation
 jupyter notebook day-4-data-wrangling-and-missing-data.ipynb
+
+# Run Day 5: Outlier Detection, Spatial Engineering & Domain-Driven Filtration
+jupyter notebook day-5-outlier-outlier-detection.ipynb
 ```
 
 ---
@@ -493,10 +585,10 @@ jupyter notebook day-4-data-wrangling-and-missing-data.ipynb
 - [x] **Day 2**: Compound Boolean Filtering, Policy Slicing, Vulnerability Subsetting, and Anomaly Auditing.
 - [x] **Day 3**: Multi-Dimensional Aggregation, Hierarchical Grouping, and Multi-Metric Report Cards.
 - [x] **Day 4**: Missing Data Architecture, Sentinel Evolution, Skewness Imputation, and Subgroup Mean Patching.
-- [ ] **Day 5**: Outlier Detection & Treatment (Interquartile Range - IQR, Z-Scores, Winsorization).
+- [x] **Day 5**: Exploratory Data Analysis for Outliers, Multi-Stage Pipeline Architecture & Domain-Driven Filtration.
 - [ ] **Day 6**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
 - [ ] **Day 7**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
-- [ ] **Day 8**: Predictive Modeling on Maternal Health & Economic Determinants.
+- [ ] **Day 8**: Predictive Machine Learning Modeling & Deployment.
 
 ---
 
