@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/status-active-success.svg)]()
 
-An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, **multi-dimensional statistical aggregation**, **domain-driven spatial filtration**, **algorithmic outlier engineering**, **enterprise data governance**, and **applied inferential statistics & hypothesis testing** across socioeconomic, public health, labor market, education, and real estate datasets.
+An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, **multi-dimensional statistical aggregation**, **domain-driven spatial filtration**, **algorithmic outlier engineering**, **enterprise data governance**, and **advanced inferential statistics & hypothesis testing** across socioeconomic, public health, labor market, education, and real estate datasets.
 
 ---
 
@@ -23,6 +23,7 @@ An applied, portfolio-grade data science repository demonstrating **data hygiene
 | [**Activity 6 (Day 6)**](#-activity-6-day-6--advanced-statistical-outlier-engineering--algorithmic-anomaly-filtration) | **Statistical & Algorithmic Outlier Engineering** | Empirical Rule ($\mu \pm 1\sigma$), Location-Grouped PPS Filtration, Scatter Diagnostics, Cross-BHK Algorithmic Benchmark Engine | `house_prices.csv` | [`day-6-outlier-outlier-detection.ipynb`](./day-6-outlier-outlier-detection.ipynb) |
 | [**Activity 7 (Day 7)**](#-activity-7-day-7--enterprise-data-governance-frameworks--conceptual-foundations-of-inference) | **Enterprise Data Governance** | Governance vs. Management, 6 Enterprise Pillars, Descriptive vs. Inferential Paradigms, 4 Pillars of Inference | Conceptual Architecture | [`day-7-data-governance-and-inferential-statistics.ipynb`](./day-7-data-governance-and-inferential-statistics.ipynb) |
 | [**Activity 8 (Day 8)**](#-activity-8-day-8--applied-inferential-statistics-ab-testing--independent-t-testing) | **Applied Inferential Statistics & A/B Testing** | Independent vs. Paired $t$-Tests, A/B Campaign Simulation, Institutional Hypothesis Testing (`scipy.stats.ttest_ind`) | `us_education_system_dataset.csv` | [`day-8-inferential-statistics.ipynb`](./day-8-inferential-statistics.ipynb) |
+| [**Activity 9 (Day 9)**](#-activity-9-day-9--advanced-inferential-statistics-one-way-anova-chi-square-independence--correlation-significance) | **Advanced Inferential Statistics** | One-Way ANOVA (`stats.f_oneway`), Chi-Square Test of Independence (`stats.chi2_contingency`), Pearson Correlation Significance (`stats.pearsonr`) | `us_education_system_dataset.csv` | [`day-9-inferential-statistic-part-2.ipynb`](./day-9-inferential-statistic-part-2.ipynb) |
 
 ---
 
@@ -48,9 +49,11 @@ In real-world data science, raw data rarely arrives clean, balanced, or modeling
 ├── day-6-outlier-outlier-detection.ipynb                 # Day 6: Advanced statistical outlier engineering & algorithmic filtration
 ├── day-7-data-governance-and-inferential-statistics.ipynb # Day 7: Enterprise data governance frameworks & inference theory
 ├── day-8-inferential-statistics.ipynb                    # Day 8: Applied inferential statistics, A/B testing & t-tests
+├── day-9-inferential-statistic-part-2.ipynb              # Day 9: Advanced inferential statistics (ANOVA, Chi-Square, Pearson r)
 ├── nigeria_unemployment_missing_data.csv                 # Employment survey dataset with missing entries (5,000 rows)
 ├── nigeria_economic_data.csv                             # Socioeconomic indicators & poverty level classification (10,000 rows)
 ├── nigeria_nursing_mothers_healthcare.csv                # Maternal healthcare access & immunization metrics (10,000 rows)
+├── us_education_system_dataset.csv                       # Institutional US educational outcomes dataset (5,000 rows)
 ├── .gitignore                                            # Standard git ignore rules for Python & Jupyter artifacts
 └── README.md                                             # Comprehensive project documentation and portfolio log
 ```
@@ -75,9 +78,9 @@ Demographic and healthcare access dataset examining delivery facilities, immuniz
 Real estate and residential property transaction dataset with mixed string formats, range-based square footage, bathroom configurations, and pricing distributions.
 - **Key Columns**: `area_type`, `availability`, `location`, `size` (e.g. `'2 BHK'`, `'4 Bedroom'`), `society`, `total_sqft` (e.g. `'1056'`, `'2100 - 2850'`), `bath`, `balcony`, `price`.
 
-### 5. `us_education_system_dataset.csv`
-Comparative institutional dataset analyzing secondary and post-secondary educational attainment, school governance categories (public vs. private), district demographics, and graduation rate outcomes for inferential hypothesis testing.
-- **Key Columns**: `School_ID`, `School_Type` (Public/Private), `District`, `Student_Enrollment`, `Funding_Per_Student`, `Graduation_Rate`.
+### 5. `us_education_system_dataset.csv` (5,000 Records)
+Comprehensive national institutional dataset analyzing secondary and post-secondary educational attainment, governance models (`control`: Public vs. Private), NCES locale classifications, Title I funding eligibility, per-pupil expenditure, student-teacher staffing ratios, STEM certification flags, and graduation rates for inferential hypothesis testing and variance modeling.
+- **Key Columns**: `institution_id`, `institution_name`, `state_name`, `nces_locale`, `control`, `title_i_status`, `student_teacher_ratio`, `per_pupil_expenditure_usd`, `graduation_rate_pct`, `stem_certified_flag`.
 
 ---
 
@@ -955,7 +958,7 @@ else:
 
 ---
 
-## 🧩 End-to-End Pipeline Synthesis (Days 1–8)
+## 🧩 End-to-End Pipeline Synthesis (Days 1–9)
 
 | Stage | Activity | Key Challenge Solved | Primary Tool / Technique | Core Analytical Deliverable |
 | :--- | :--- | :--- | :--- | :--- |
@@ -967,6 +970,7 @@ else:
 | **Phase 6** | **Statistical & Algorithmic Outlier Engineering** | Trimming micro-market price variance & cross-tier pricing inversions | Localized $\pm 1\sigma$ filtration (`remove_pps_outliers`), scatter diagnostics, algorithmic benchmark lookup tables (`remove_bhk_outliers`) | Clean production dataset refined to 7,511 high-integrity records (43.6% total noise pruned) |
 | **Phase 7** | **Enterprise Data Governance** | Institutional compliance & ethical lifecycle management | 6 Governance Pillars, Accountability, Data Lineage, Retention TTL | Enterprise data governance policy matrix & risk mitigation blueprint |
 | **Phase 8** | **Applied Inferential Statistics & A/B Testing** | Proving business and policy differences over stochastic flukes | Two-sample independent $t$-tests (`scipy.stats.ttest_ind`), simulation benchmarks | Rigorous empirical hypothesis testing engine proving marketing & educational deltas |
+| **Phase 9** | **Advanced Inferential Statistics: Multi-Group & Categorical Testing** | Comparing variance across ≥3 groups, testing categorical independence & validating linear correlations | One-Way ANOVA (`stats.f_oneway`), Chi-Square Test of Independence (`stats.chi2_contingency`), Pearson Correlation Significance (`stats.pearsonr`) | Confirmed significant staffing ratio variance across locales, structural Title I / STEM association, and positive expenditure–graduation correlation |
 
 ---
 
@@ -1022,6 +1026,9 @@ jupyter notebook day-7-data-governance-and-inferential-statistics.ipynb
 
 # Run Day 8: Applied Inferential Statistics, A/B Testing & Hypothesis Testing
 jupyter notebook day-8-inferential-statistics.ipynb
+
+# Run Day 9: Advanced Inferential Statistics (ANOVA, Chi-Square, Pearson r)
+jupyter notebook day-9-inferential-statistic-part-2.ipynb
 ```
 
 ---
@@ -1036,9 +1043,10 @@ jupyter notebook day-8-inferential-statistics.ipynb
 - [x] **Day 6**: Advanced Statistical Outlier Engineering, $\mu \pm 1\sigma$ Location Filtering, Visual Scatter Diagnostics & Algorithmic Cross-BHK Anomaly Removal.
 - [x] **Day 7**: Enterprise Data Governance Frameworks (6 Pillars: Accountability, Transparency, Quality, Security, Purpose, Retention).
 - [x] **Day 8**: Applied Inferential Statistics, Two-Sample Independent $t$-Testing, A/B Testing Simulation & Institutional Hypothesis Testing.
-- [ ] **Day 9**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
-- [ ] **Day 10**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
-- [ ] **Day 11**: Predictive Machine Learning Modeling & Deployment.
+- [x] **Day 9**: Advanced Inferential Statistics — One-Way ANOVA, Chi-Square Test of Independence & Pearson Correlation Significance Testing.
+- [ ] **Day 10**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
+- [ ] **Day 11**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
+- [ ] **Day 12**: Predictive Machine Learning Modeling & Deployment.
 
 ---
 
