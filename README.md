@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/status-active-success.svg)]()
 
-An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, **multi-dimensional statistical aggregation**, **domain-driven spatial filtration**, **algorithmic outlier engineering**, and **enterprise data governance & inferential statistics** across socioeconomic, public health, labor market, education, and real estate datasets.
+An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, **multi-dimensional statistical aggregation**, **domain-driven spatial filtration**, **algorithmic outlier engineering**, **enterprise data governance**, and **applied inferential statistics & hypothesis testing** across socioeconomic, public health, labor market, education, and real estate datasets.
 
 ---
 
@@ -21,7 +21,8 @@ An applied, portfolio-grade data science repository demonstrating **data hygiene
 | [**Activity 4 (Day 4)**](#-activity-4-day-4--deep-dive-missing-data-architecture-sentinel-evolution--advanced-imputation) | **Missing Data Architecture & Advanced Imputation** | Sentinel Evolution, Nullable `Int32`, Geography Pruning, Skewness & Median Imputation, Subgroup Fill | `nigeria_unemployment_missing_data.csv` | [`day-4-data-wrangling-and-missing-data.ipynb`](./day-4-data-wrangling-and-missing-data.ipynb) |
 | [**Activity 5 (Day 5)**](#-activity-5-day-5--exploratory-data-analysis-for-outlier-detection-spatial-engineering--domain-driven-filtration) | **Outlier Detection & Domain-Driven Filtration** | Multi-Stage Pipelines (1–5), Continuous Range Parsing, Feature Engineering (`bhk`, `price_per_sqft`), Domain Thresholding | `house_prices.csv` | [`day-5-outlier-outlier-detection.ipynb`](./day-5-outlier-outlier-detection.ipynb) |
 | [**Activity 6 (Day 6)**](#-activity-6-day-6--advanced-statistical-outlier-engineering--algorithmic-anomaly-filtration) | **Statistical & Algorithmic Outlier Engineering** | Empirical Rule ($\mu \pm 1\sigma$), Location-Grouped PPS Filtration, Scatter Diagnostics, Cross-BHK Algorithmic Benchmark Engine | `house_prices.csv` | [`day-6-outlier-outlier-detection.ipynb`](./day-6-outlier-outlier-detection.ipynb) |
-| [**Activity 7 (Day 7)**](#-activity-7-day-7--enterprise-data-governance--inferential-statistics-foundations) | **Data Governance & Inferential Statistics** | Governance vs. Management, 6 Governance Pillars, Sample vs. Population, Hypothesis Testing ($H_0$ vs. $H_a$), $p$-Value Thresholding, Independent $t$-Tests | `us_education_system_dataset.csv` | [`day-7-data-governance-and-inferential-statistics.ipynb`](./day-7-data-governance-and-inferential-statistics.ipynb) |
+| [**Activity 7 (Day 7)**](#-activity-7-day-7--enterprise-data-governance-frameworks--conceptual-foundations-of-inference) | **Enterprise Data Governance** | Governance vs. Management, 6 Enterprise Pillars, Descriptive vs. Inferential Paradigms, 4 Pillars of Inference | Conceptual Architecture | [`day-7-data-governance-and-inferential-statistics.ipynb`](./day-7-data-governance-and-inferential-statistics.ipynb) |
+| [**Activity 8 (Day 8)**](#-activity-8-day-8--applied-inferential-statistics-ab-testing--independent-t-testing) | **Applied Inferential Statistics & A/B Testing** | Independent vs. Paired $t$-Tests, A/B Campaign Simulation, Institutional Hypothesis Testing (`scipy.stats.ttest_ind`) | `us_education_system_dataset.csv` | [`day-8-inferential-statistics.ipynb`](./day-8-inferential-statistics.ipynb) |
 
 ---
 
@@ -45,7 +46,8 @@ In real-world data science, raw data rarely arrives clean, balanced, or modeling
 ├── day-4-data-wrangling-and-missing-data.ipynb           # Day 4: Missing data architecture, sentinel theory & advanced imputation
 ├── day-5-outlier-outlier-detection.ipynb                 # Day 5: Multi-stage pipeline architecture & domain outlier filtration
 ├── day-6-outlier-outlier-detection.ipynb                 # Day 6: Advanced statistical outlier engineering & algorithmic filtration
-├── day-7-data-governance-and-inferential-statistics.ipynb # Day 7: Enterprise data governance & inferential statistics
+├── day-7-data-governance-and-inferential-statistics.ipynb # Day 7: Enterprise data governance frameworks & inference theory
+├── day-8-inferential-statistics.ipynb                    # Day 8: Applied inferential statistics, A/B testing & t-tests
 ├── nigeria_unemployment_missing_data.csv                 # Employment survey dataset with missing entries (5,000 rows)
 ├── nigeria_economic_data.csv                             # Socioeconomic indicators & poverty level classification (10,000 rows)
 ├── nigeria_nursing_mothers_healthcare.csv                # Maternal healthcare access & immunization metrics (10,000 rows)
@@ -829,7 +831,131 @@ flowchart LR
 
 ---
 
-## 🧩 End-to-End Pipeline Synthesis (Days 1–7)
+## 🧪 Activity 8 (Day 8) — Applied Inferential Statistics: A/B Testing & Independent Samples $t$-Testing
+
+> **Notebook**: [`day-8-inferential-statistics.ipynb`](./day-8-inferential-statistics.ipynb)  
+> **Core Concepts**: Independent vs. Paired $t$-Tests, Two-Sample Independent $t$-Test (`scipy.stats.ttest_ind`), Simulation-Driven A/B Testing, $p$-Value Misinterpretation Fallacies, Real-World Hypothesis Testing on Institutional Education Systems
+
+### Workflow Overview
+
+```mermaid
+flowchart TD
+    subgraph EXP1[Experiment 1: Simulated Marketing A/B Test]
+        C1["Control Cohort (n=100, μ=$489.62)"] & T1["Treatment Cohort (n=100, μ=$552.23)"] --> D1["Delta: +$62.62 Spending Lift"]
+        D1 --> S1["scipy.stats.ttest_ind()"]
+        S1 --> R1["t = 4.7547 | p = 3.82e-6 << 0.05"]
+        R1 --> DEC1["Reject H0: Campaign Generates Significant Positive Lift"]
+    end
+    subgraph EXP2[Experiment 2: US Education Institutional Disparity]
+        ED["US Education System Dataset"] --> P_PUB["Public Schools (n=obs, Mean=84.40%)"]
+        ED --> P_PVT["Private Non-Profit (n=obs, Mean=87.83%)"]
+        P_PUB & P_PVT --> D2["Delta: +3.43% Graduation Advantage"]
+        D2 --> S2["scipy.stats.ttest_ind(public_grads, private_grads)"]
+        S2 --> R2["t = -12.0869 | p = 0.0000 << 0.05"]
+        R2 --> DEC2["Reject H0: Statistically Significant Institutional Disparity"]
+    end
+```
+
+---
+
+### Theoretical Foundation: The Mechanics of Independent $t$-Testing
+
+#### 1. Independent vs. Paired $t$-Tests
+Choosing the correct statistical test is vital to avoid fatal methodological errors:
+- **Independent Samples $t$-Test**: Compares the means of **two completely separate groups** where observations in one group have no relationship to observations in the other (e.g., Treatment vs. Control customers; Public vs. Private school students).
+- **Paired Samples $t$-Test**: Compares the means of the **same subjects measured twice** under two different conditions (e.g., student test scores *before* vs. *after* a training curriculum).
+
+#### 2. The Great $p$-Value Misinterpretation Fallacy
+A rampant error in business analytics is misinterpreting the $p$-value:
+- ❌ **Incorrect**: *"There is a 0.01% probability that the null hypothesis is true."*
+- ✅ **Correct**: *"Assuming there was absolutely zero true difference between the two groups, the probability of observing a difference as large as (or larger than) our sample result purely due to random sampling chance is 0.01%."*
+
+When $p < \alpha$ (standard $\alpha = 0.05$), the observed effect is exceptionally unlikely to be a stochastic fluke, justifying rejection of $H_0$.
+
+---
+
+### Experiment 1: Controlled Simulation Experiment (Marketing Campaign Lift)
+
+To validate the sensitivity of the two-sample independent $t$-test under controlled conditions, a synthetic customer spending experiment was simulated with known parameters:
+- **Control Group**: Customers who did not receive the campaign ($n = 100, \mu = 500, \sigma = 100$).
+- **Treatment Group**: Customers exposed to the new promotional campaign ($n = 100, \mu = 550, \sigma = 100$).
+
+```python
+import numpy as np
+from scipy.stats import ttest_ind
+
+np.random.seed(42)
+control = np.random.normal(loc=500, scale=100, size=100)
+treatment = np.random.normal(loc=550, scale=100, size=100)
+
+difference = treatment.mean() - control.mean()
+t_stat, p_value = ttest_ind(treatment, control)
+
+print(f"Control Mean: ${control.mean():.2f} | Treatment Mean: ${treatment.mean():.2f}")
+print(f"Observed Difference: +${difference:.2f}")
+print(f"t-statistic: {t_stat:.4f} | p-value: {p_value:.4e}")
+```
+
+#### Quantitative Findings:
+- **Control Mean**: **$489.62**
+- **Treatment Mean**: **$552.23**
+- **Net Delta**: **+$62.62** lift in customer spend
+- **Calculated $t$-statistic**: **4.7547**
+- **Calculated $p$-value**: **$3.819 \times 10^{-6}$** ($p \ll 0.05$)
+- **Business Conclusion**: Strong statistical significance. The likelihood that this $62.62 lift occurred by chance alone is less than 4 in 1,000,000. Reject $H_0$; roll out the campaign.
+
+---
+
+### Experiment 2: Real-World Institutional Case Study (US Education Graduation Rates)
+
+- **Dataset**: `us_education_system_dataset.csv`
+- **Analytical Objective**: Determine whether Private Non-Profit secondary schools achieve statistically superior graduation rates compared to traditional Public schools, or if the observed delta is within random sampling fluctuation.
+- **Categorical Breakdown**: Inspected the `control` governance feature across institutions:
+  `['Public', 'Private Religious', 'Private For-Profit', 'Public Charter', 'Private Non-Profit']`
+- **Hypothesis Formulation**:
+  $$H_0: \mu_{\text{public}} = \mu_{\text{private\_non\_profit}} \quad (\text{Equal mean graduation rates})$$
+  $$H_a: \mu_{\text{public}} \ne \mu_{\text{private\_non\_profit}} \quad (\text{Statistically significant difference in rates})$$
+
+```python
+# Isolate specific target governance cohorts
+public_grads = us_edu_data[us_edu_data['control'] == 'Public']['graduation_rate_pct'].dropna()
+private_grads = us_edu_data[us_edu_data['control'] == 'Private Non-Profit']['graduation_rate_pct'].dropna()
+
+# Execute two-sample independent t-test
+t_stat, p_value = ttest_ind(public_grads, private_grads)
+
+print(f"Public Mean Graduation Rate: {public_grads.mean():.2f}%")
+print(f"Private Non-Profit Mean Graduation Rate: {private_grads.mean():.2f}%")
+print(f"Calculated T-Statistic: {t_stat:.4f}")
+print(f"Calculated p-value: {p_value:.4f}")
+
+alpha = 0.05
+if p_value < alpha:
+    print("Result: Significant! We reject the Null Hypothesis. There is a real difference.")
+else:
+    print("Result: Not significant. We fail to reject the Null.")
+```
+
+#### Quantitative Findings:
+- **Public Schools Mean**: **84.40%**
+- **Private Non-Profit Schools Mean**: **87.83%**
+- **Institutional Delta**: **+3.43%** higher graduation rate for Private Non-Profit schools
+- **Calculated $t$-statistic**: **-12.0869**
+- **Calculated $p$-value**: **0.0000** ($p < 0.0001 \ll 0.05$)
+- **Empirical Takeaway**: The $t$-statistic of $-12.09$ represents an extreme deviation of over 12 standard errors from the null hypothesis center. We reject $H_0$ with near 100% statistical confidence, confirming that private non-profit institutions maintain a real, statistically verified advantage in secondary completion rates.
+
+---
+
+### Activity 8 Results Matrix
+
+| Case Study / Domain | Sample Cohorts ($A$ vs. $B$) | Sample Sizes ($n_A, n_B$) | Observed Means ($\bar{x}_A, \bar{x}_B$) | Effect Delta ($\Delta$) | $t$-statistic | $p$-value | Decision at $\alpha=0.05$ |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Marketing Campaign A/B Test** | Control vs. Treatment | 100 vs. 100 | \$489.62 vs. \$552.23 | **+\$62.62** | **4.7547** | **$3.82 \times 10^{-6}$** | **Reject $H_0$** (Significant Lift) |
+| **US Education System Disparity** | Public vs. Private Non-Profit | Multi-District | 84.40% vs. 87.83% | **+3.43%** | **-12.0869** | **0.0000** | **Reject $H_0$** (Significant Advantage) |
+
+---
+
+## 🧩 End-to-End Pipeline Synthesis (Days 1–8)
 
 | Stage | Activity | Key Challenge Solved | Primary Tool / Technique | Core Analytical Deliverable |
 | :--- | :--- | :--- | :--- | :--- |
@@ -839,7 +965,8 @@ flowchart LR
 | **Phase 4** | **Architectural Imputation** | Handling skewness, sentinel evolution & subgroup variance | Nullable `Int32`, median patching, group-based fill | Production-grade clean dataframe with zero statistical drift |
 | **Phase 5** | **Domain-Driven Outlier Engineering** | Detecting physical impossibilities & non-standard ranges | Range parsers, `price_per_sqft`, domain thresholding | Removed 744 spatial anomalies; produced 12,502 clean records |
 | **Phase 6** | **Statistical & Algorithmic Outlier Engineering** | Trimming micro-market price variance & cross-tier pricing inversions | Localized $\pm 1\sigma$ filtration (`remove_pps_outliers`), scatter diagnostics, algorithmic benchmark lookup tables (`remove_bhk_outliers`) | Clean production dataset refined to 7,511 high-integrity records (43.6% total noise pruned) |
-| **Phase 7** | **Data Governance & Inferential Statistics** | Institutional compliance & separating genuine signals from stochastic noise | 6 Governance Pillars, Null Hypothesis Significance Testing, Welch's $t$-test (`scipy.stats`) | Enterprise data governance policy matrix & hypothesis testing engine |
+| **Phase 7** | **Enterprise Data Governance** | Institutional compliance & ethical lifecycle management | 6 Governance Pillars, Accountability, Data Lineage, Retention TTL | Enterprise data governance policy matrix & risk mitigation blueprint |
+| **Phase 8** | **Applied Inferential Statistics & A/B Testing** | Proving business and policy differences over stochastic flukes | Two-sample independent $t$-tests (`scipy.stats.ttest_ind`), simulation benchmarks | Rigorous empirical hypothesis testing engine proving marketing & educational deltas |
 
 ---
 
@@ -890,8 +1017,11 @@ jupyter notebook day-5-outlier-outlier-detection.ipynb
 # Run Day 6: Advanced Statistical Outlier Engineering & Algorithmic Filtration
 jupyter notebook day-6-outlier-outlier-detection.ipynb
 
-# Run Day 7: Enterprise Data Governance & Inferential Statistics
+# Run Day 7: Enterprise Data Governance Frameworks & Conceptual Foundations
 jupyter notebook day-7-data-governance-and-inferential-statistics.ipynb
+
+# Run Day 8: Applied Inferential Statistics, A/B Testing & Hypothesis Testing
+jupyter notebook day-8-inferential-statistics.ipynb
 ```
 
 ---
@@ -904,10 +1034,11 @@ jupyter notebook day-7-data-governance-and-inferential-statistics.ipynb
 - [x] **Day 4**: Missing Data Architecture, Sentinel Evolution, Skewness Imputation, and Subgroup Mean Patching.
 - [x] **Day 5**: Exploratory Data Analysis for Outliers, Multi-Stage Pipeline Architecture & Domain-Driven Filtration ($\ge 300\text{ sqft/bhk}$).
 - [x] **Day 6**: Advanced Statistical Outlier Engineering, $\mu \pm 1\sigma$ Location Filtering, Visual Scatter Diagnostics & Algorithmic Cross-BHK Anomaly Removal.
-- [x] **Day 7**: Enterprise Data Governance Frameworks & Inferential Statistics Foundations (Hypothesis Testing, $p$-values, Independent $t$-tests).
-- [ ] **Day 8**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
-- [ ] **Day 9**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
-- [ ] **Day 10**: Predictive Machine Learning Modeling & Deployment.
+- [x] **Day 7**: Enterprise Data Governance Frameworks (6 Pillars: Accountability, Transparency, Quality, Security, Purpose, Retention).
+- [x] **Day 8**: Applied Inferential Statistics, Two-Sample Independent $t$-Testing, A/B Testing Simulation & Institutional Hypothesis Testing.
+- [ ] **Day 9**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
+- [ ] **Day 10**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
+- [ ] **Day 11**: Predictive Machine Learning Modeling & Deployment.
 
 ---
 
