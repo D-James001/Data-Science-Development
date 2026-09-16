@@ -2,11 +2,12 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/pandas-2.0%2B-150458.svg)](https://pandas.pydata.org/)
+[![SciPy](https://img.shields.io/badge/scipy-1.10%2B-blue.svg)](https://scipy.org/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange.svg)](https://jupyter.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Status: Active](https://img.shields.io/badge/status-active-success.svg)]()
 
-An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, **multi-dimensional statistical aggregation**, and **domain-driven outlier engineering** across socioeconomic, public health, labor market, and real estate datasets.
+An applied, portfolio-grade data science repository demonstrating **data hygiene**, **missing value diagnostics & imputation architecture**, **advanced conditional filtering & anomaly detection**, **multi-dimensional statistical aggregation**, **domain-driven spatial filtration**, **algorithmic outlier engineering**, and **enterprise data governance & inferential statistics** across socioeconomic, public health, labor market, education, and real estate datasets.
 
 ---
 
@@ -19,31 +20,37 @@ An applied, portfolio-grade data science repository demonstrating **data hygiene
 | [**Activity 3 (Day 3)**](#-activity-3-day-3--data-aggregation-multi-dimensional-grouping--statistical-reporting) | **Aggregation & Statistical Reporting** | `.groupby()`, Multi-Level Grouping, Aggregation Engines (`.agg()`), Frequency Binning | `nigeria_economic_data.csv`<br>`nigeria_nursing_mothers_healthcare.csv`<br>`nigeria_unemployment_missing_data.csv` | [`day-3-data-aggregation.ipynb`](./day-3-data-aggregation.ipynb) |
 | [**Activity 4 (Day 4)**](#-activity-4-day-4--deep-dive-missing-data-architecture-sentinel-evolution--advanced-imputation) | **Missing Data Architecture & Advanced Imputation** | Sentinel Evolution, Nullable `Int32`, Geography Pruning, Skewness & Median Imputation, Subgroup Fill | `nigeria_unemployment_missing_data.csv` | [`day-4-data-wrangling-and-missing-data.ipynb`](./day-4-data-wrangling-and-missing-data.ipynb) |
 | [**Activity 5 (Day 5)**](#-activity-5-day-5--exploratory-data-analysis-for-outlier-detection-spatial-engineering--domain-driven-filtration) | **Outlier Detection & Domain-Driven Filtration** | Multi-Stage Pipelines (1–5), Continuous Range Parsing, Feature Engineering (`bhk`, `price_per_sqft`), Domain Thresholding | `house_prices.csv` | [`day-5-outlier-outlier-detection.ipynb`](./day-5-outlier-outlier-detection.ipynb) |
+| [**Activity 6 (Day 6)**](#-activity-6-day-6--advanced-statistical-outlier-engineering--algorithmic-anomaly-filtration) | **Statistical & Algorithmic Outlier Engineering** | Empirical Rule ($\mu \pm 1\sigma$), Location-Grouped PPS Filtration, Scatter Diagnostics, Cross-BHK Algorithmic Benchmark Engine | `house_prices.csv` | [`day-6-outlier-outlier-detection.ipynb`](./day-6-outlier-outlier-detection.ipynb) |
+| [**Activity 7 (Day 7)**](#-activity-7-day-7--enterprise-data-governance--inferential-statistics-foundations) | **Data Governance & Inferential Statistics** | Governance vs. Management, 6 Governance Pillars, Sample vs. Population, Hypothesis Testing ($H_0$ vs. $H_a$), $p$-Value Thresholding, Independent $t$-Tests | `us_education_system_dataset.csv` | [`day-7-data-governance-and-inferential-statistics.ipynb`](./day-7-data-governance-and-inferential-statistics.ipynb) |
 
 ---
 
 ## 🍽️ The Core Philosophy: *The Data Kitchen & The Data Chef*
 
-In real-world data science, raw data rarely arrives clean, balanced, or modeling-ready. Just as a professional chef cannot cook unwashed, uninspected, or poorly measured ingredients straight from the market:
+In real-world data science, raw data rarely arrives clean, balanced, or modeling-ready. Just as a world-class restaurant cannot serve meals straight from raw farm crates:
 
-- **Raw Ingredients = Raw Data**: Datasets contain missing entries ("spoilage/rot"), inconsistent units, demographic contradictions, formatting range strings, and physical anomalies.
+- **Raw Ingredients = Raw Data**: Datasets contain missing values ("spoilage/rot"), inconsistent units, demographic contradictions, formatting range strings, and physical anomalies.
 - **The Data Chef = The Data Scientist**: Responsible for inspecting every feature, assessing data hygiene, diagnosing *why* anomalies exist, applying principled cleaning, slicing cohorts, engineering aggregations, and isolating outliers before machine learning modeling.
+- **The High-Tech Oven = Machine Learning**: Powerful algorithms training on prepared data. A high-tech oven cannot fix rotten or unwashed food.
+- **The Food Safety Code & Health Inspector = Data Governance**: The organizational and ethical framework defining who can access ingredients, how long records can be preserved, strict sanitary standards, traceability, and regulatory compliance.
 
 ---
 
 ## 📁 Repository Structure
 
 ```text
-├── day-1-data-wrangling.ipynb                    # Day 1: Ingestion, null diagnostics, and imputation experiments
-├── day-2-data-wrangling & filtering.ipynb        # Day 2: Compound conditional filtering & anomaly detection
-├── day-3-data-aggregation.ipynb                  # Day 3: Multi-dimensional grouping, aggregation & reporting
-├── day-4-data-wrangling-and-missing-data.ipynb   # Day 4: Missing data architecture, sentinel theory & advanced imputation
-├── day-5-outlier-outlier-detection.ipynb         # Day 5: Multi-stage pipeline architecture & domain outlier filtration
-├── nigeria_unemployment_missing_data.csv         # Employment survey dataset with missing entries (5,000 rows)
-├── nigeria_economic_data.csv                     # Socioeconomic indicators & poverty level classification (10,000 rows)
-├── nigeria_nursing_mothers_healthcare.csv        # Maternal healthcare access & immunization metrics (10,000 rows)
-├── .gitignore                                    # Standard git ignore rules for Python & Jupyter artifacts
-└── README.md                                     # Comprehensive project documentation and portfolio log
+├── day-1-data-wrangling.ipynb                            # Day 1: Ingestion, null diagnostics, and imputation experiments
+├── day-2-data-wrangling & filtering.ipynb                # Day 2: Compound conditional filtering & anomaly detection
+├── day-3-data-aggregation.ipynb                          # Day 3: Multi-dimensional grouping, aggregation & reporting
+├── day-4-data-wrangling-and-missing-data.ipynb           # Day 4: Missing data architecture, sentinel theory & advanced imputation
+├── day-5-outlier-outlier-detection.ipynb                 # Day 5: Multi-stage pipeline architecture & domain outlier filtration
+├── day-6-outlier-outlier-detection.ipynb                 # Day 6: Advanced statistical outlier engineering & algorithmic filtration
+├── day-7-data-governance-and-inferential-statistics.ipynb # Day 7: Enterprise data governance & inferential statistics
+├── nigeria_unemployment_missing_data.csv                 # Employment survey dataset with missing entries (5,000 rows)
+├── nigeria_economic_data.csv                             # Socioeconomic indicators & poverty level classification (10,000 rows)
+├── nigeria_nursing_mothers_healthcare.csv                # Maternal healthcare access & immunization metrics (10,000 rows)
+├── .gitignore                                            # Standard git ignore rules for Python & Jupyter artifacts
+└── README.md                                             # Comprehensive project documentation and portfolio log
 ```
 
 ---
@@ -65,6 +72,10 @@ Demographic and healthcare access dataset examining delivery facilities, immuniz
 ### 4. `house_prices.csv` (13,320 Records)
 Real estate and residential property transaction dataset with mixed string formats, range-based square footage, bathroom configurations, and pricing distributions.
 - **Key Columns**: `area_type`, `availability`, `location`, `size` (e.g. `'2 BHK'`, `'4 Bedroom'`), `society`, `total_sqft` (e.g. `'1056'`, `'2100 - 2850'`), `bath`, `balcony`, `price`.
+
+### 5. `us_education_system_dataset.csv`
+Comparative institutional dataset analyzing secondary and post-secondary educational attainment, school governance categories (public vs. private), district demographics, and graduation rate outcomes for inferential hypothesis testing.
+- **Key Columns**: `School_ID`, `School_Type` (Public/Private), `District`, `Student_Enrollment`, `Funding_Per_Student`, `Graduation_Rate`.
 
 ---
 
@@ -520,7 +531,305 @@ flowchart LR
 
 ---
 
-## 🧩 End-to-End Pipeline Synthesis (Days 1–5)
+## 🎯 Activity 6 (Day 6) — Advanced Statistical Outlier Engineering & Algorithmic Anomaly Filtration
+
+> **Notebook**: [`day-6-outlier-outlier-detection.ipynb`](./day-6-outlier-outlier-detection.ipynb)  
+> **Core Concepts**: Empirical Rule & Standard Deviation Filtering ($\mu \pm 1\sigma$), Location-Grouped Normalization, Visual Scatter Diagnostics (`plot_scatter_chart`), Domain-Driven Bedroom Price Inversions, Algorithmic Benchmark Lookup Tables (`remove_bhk_outliers`), Quantitative Dataset Pruning
+
+### Workflow Overview
+
+```mermaid
+flowchart TD
+    D5["Clean Pipeline 5 Dataset: 12,502 Records"] --> P6["Pipeline 6: Location-Grouped PPS Outlier Filter (remove_pps_outliers)"]
+    P6 --> R6["Pruned 3,241 Outliers (|PPS - μ_loc| > σ_loc) → 9,261 Records"]
+    R6 --> P7["Pipeline 7: Visual Scatter Diagnostic Engine (plot_scatter_chart)"]
+    P7 --> V7["Identified Cross-BHK Inversions (2 BHK > 3 BHK in same locality)"]
+    V7 --> P8["Pipeline 8: Algorithmic BHK Benchmark Engine (remove_bhk_outliers)"]
+    P8 --> R8["Pruned 1,750 Bedroom-Inversion Records (n > 5 benchmark) → 7,511 Final Clean Records"]
+```
+
+---
+
+### Theoretical Foundation: The Empirical Rule & Micro-Market Realities
+
+#### 1. The Normal Distribution & The Empirical Rule ($\mu \pm 1\sigma$)
+In continuous statistical distributions, the **Empirical Rule** dictates that for an approximately normally distributed feature:
+- Approximately **68.27%** of observations lie within $1\sigma$ of the mean ($\mu \pm 1\sigma$).
+- Approximately **95.45%** lie within $2\sigma$ ($\mu \pm 2\sigma$).
+- Approximately **99.73%** lie within $3\sigma$ ($\mu \pm 3\sigma$).
+
+When evaluating real estate metrics such as `price_per_sqft(100)`, extreme right-tail skewness (ultra-luxury penthouses) and left-tail data entry errors (mislabeled unit prices) will destabilize variance and bias gradient descent. Applying a localized $1\sigma$ bound filters out erratic boundaries while preserving the robust core of property transactions.
+
+#### 2. The Micro-Market Paradox: Why Global Filtration Fails
+A fundamental error in real estate data science is computing global dataset means. A price of ₦15,000/sqft may represent an extreme high-end luxury outlier in an outlying rural town, yet simultaneously represent an impossibly low error in a prime commercial center like Ikoyi or Victoria Island. 
+
+Statistical outlier filtration **must be localized**:
+$$\mu_{\text{loc}} - \sigma_{\text{loc}} < \text{price\_per\_sqft} \le \mu_{\text{loc}} + \sigma_{\text{loc}}$$
+
+#### 3. Cross-BHK Price Inversion Anomaly
+Under standard market equilibrium within the same apartment complex or neighborhood, an apartment with fewer bedrooms should not command a higher price than an apartment with more bedrooms for equivalent square footage. When a 2 BHK apartment costs significantly more per square foot than an adjacent 3 BHK apartment with comparable square footage, it indicates:
+- Mislabeled feature tags (e.g., commercial properties coded as residential).
+- Uncaptured structural damage or distressed sales.
+- Data collection entry typos.
+
+---
+
+### The Extended Pipeline Architecture (Pipelines 6–8)
+
+```mermaid
+flowchart LR
+    D5["Pipeline 5 (12,502)"] --> D6["Pipeline 6: Location-Grouped PPS (9,261)"]
+    D6 --> D7["Pipeline 7: Visual Scatter Engine"]
+    D7 --> D8["Pipeline 8: Algorithmic BHK Pruning (7,511)"]
+```
+
+#### Pipeline 6 (`housing_data_six`): Location-Grouped Price-per-Square-Foot Statistical Filtration
+- **Engineering Logic**: Grouped the dataframe by `location`. Within each isolated neighborhood partition, calculated the mean ($\mu_{\text{loc}}$) and standard deviation ($\sigma_{\text{loc}}$) of `price_per_sqft(100)`. Extracted only properties falling within $[\mu_{\text{loc}} - \sigma_{\text{loc}}, \mu_{\text{loc}} + \sigma_{\text{loc}}]$.
+- **Code Implementation**:
+  ```python
+  def remove_pps_outliers(df):
+      df_outcome = pd.DataFrame()
+      for key, subdf in df.groupby('location'):
+          mean = np.mean(subdf['price_per_sqft(100)'])
+          std = np.std(subdf['price_per_sqft(100)'])
+          extract_df = subdf[(subdf['price_per_sqft(100)'] > (mean - std)) & 
+                             (subdf['price_per_sqft(100)'] <= (mean + std))]
+          df_outcome = pd.concat([df_outcome, extract_df], ignore_index=True)
+      return df_outcome
+
+  housing_data_six = remove_pps_outliers(housing_data_five)
+  ```
+- **Quantitative Result**:
+  - Input: **12,502 records**
+  - Pruned: **3,241 statistical price outliers**
+  - Retained: **9,261 clean localized records**
+
+#### Pipeline 7 (`housing_data_seven`): Visual Scatter Diagnostic Engine
+- **Objective**: Develop a diagnostic visualization tool to cross-examine bedroom count against total square footage and price across targeted localities.
+- **Code Implementation**:
+  ```python
+  def plot_scatter_chart(df, location):
+      bhk2 = df[(df.location == location) & (df.bhk == 2)]
+      bhk3 = df[(df.location == location) & (df.bhk == 3)]
+      plt.figure(figsize=(15, 10))
+      plt.scatter(bhk2.total_sqft, bhk2.price, color='blue', label='2 BHK', s=50)
+      plt.scatter(bhk3.total_sqft, bhk3.price, color='green', marker='+', label='3 BHK', s=50)
+      plt.xlabel("Total Square Feet Area")
+      plt.ylabel("Price (Lakh / Local Unit)")
+      plt.title(f"Property Price Distribution: {location}")
+      plt.legend()
+  ```
+- **Empirical Diagnostics**: Evaluated across key micro-markets (e.g., `'Rajaji Nagar'`, `'Whitefield'`, `'Hebbal'`). The visual scatter plots definitively proved that at identical square footages (e.g., 1,700 sqft), certain 2 BHK properties were priced substantially higher than 3 BHK properties in the same neighborhood.
+
+#### Pipeline 8 (`housing_data_eight`): Algorithmic Cross-Bedroom Outlier Filtration Engine
+- **Algorithmic Mechanics**: Built a two-pass neighborhood benchmark engine using nested dictionary lookup tables:
+  1. **Pass 1 (Benchmark Generation)**: Grouped by `location` and `bhk` to calculate benchmark dictionaries storing `mean`, `std`, and `count` for each bedroom tier.
+  2. **Pass 2 (Rule Verification & Filtration)**: For each bedroom tier $bhk$, retrieved the benchmark statistics of the immediate lower tier ($bhk - 1$). If $bhk - 1$ statistics exist with a statistically reliable sample size ($n > 5$), flagged all properties in the higher tier where:
+     $$\text{price\_per\_sqft}(100) < \mu_{bhk-1}$$
+  3. **Batch Pruning**: Collected all offending indices into a NumPy array and performed an atomic `df.drop(exclude_indices, axis='index')`.
+- **Code Implementation**:
+  ```python
+  def remove_bhk_outliers(df):
+      exclude_indices = np.array([])
+      for location, location_df in df.groupby('location'):
+          bhk_stats = {}
+          for bhk, bhk_df in location_df.groupby('bhk'):
+              bhk_stats[bhk] = {
+                  'mean': np.mean(bhk_df['price_per_sqft(100)']),
+                  'std': np.std(bhk_df['price_per_sqft(100)']),
+                  'count': bhk_df.shape[0]
+              }
+
+          for bhk, bhk_df in location_df.groupby('bhk'):
+              stats = bhk_stats.get(bhk - 1)
+              if stats and stats['count'] > 5:
+                  exclude_indices = np.append(
+                      exclude_indices,
+                      bhk_df[bhk_df['price_per_sqft(100)'] < stats['mean']].index.values
+                  )
+      return df.drop(exclude_indices, axis='index')
+
+  housing_data_eight = remove_bhk_outliers(housing_data_seven)
+  ```
+- **Quantitative Result**:
+  - Input: **9,261 records**
+  - Pruned: **1,750 bedroom-pricing inversion anomalies**
+  - Final Clean Production Dataset: **7,511 pristine, modeling-ready records**
+
+---
+
+### Activity 6 Results Matrix
+
+| Pipeline Stage | Operation / Transformation | Feature Scope | Input $\rightarrow$ Output Rows | Pruned Records | Methodological Rationale |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Pipeline 6** | Location-Grouped PPS Filter | `price_per_sqft(100)` | 12,502 $\rightarrow$ **9,261** | **3,241** | Eliminates local $\pm 1\sigma$ price anomalies per micro-market |
+| **Pipeline 7** | Visual Scatter Diagnostics | `total_sqft`, `price`, `bhk` | 9,261 rows | Diagnostic | Uncovers cross-BHK price inversions across neighborhoods |
+| **Pipeline 8** | Algorithmic Cross-BHK Pruning | `bhk`, `price_per_sqft(100)` | 9,261 $\rightarrow$ **7,511** | **1,750** | Enforces market pricing parity ($n > 5$ cohort threshold) |
+
+---
+
+### 📉 Complete Real Estate Pipeline Reduction Funnel (Pipelines 1–8)
+
+| Pipeline Phase | Description / Transformation | Observations Remaining | Records Pruned | Cumulative Data Retention | Primary Quality Gain |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Raw Dataset** | Raw Ingestion from CSV | 13,320 | 0 | 100.0% | Initial baseline |
+| **Pipeline 1** | Drop Non-Predictive Features | 13,320 | 0 | 100.0% | Reduced feature sparsity |
+| **Pipeline 2** | Drop Nulls & Engineer `bhk` | 13,246 | 74 | 99.4% | Integer bedroom normalization |
+| **Pipeline 3** | String Range Float Conversion | 13,246 | 0 | 99.4% | Continuous numeric consistency |
+| **Pipeline 4** | Standardized Unit Price (`price_per_sqft`) | 13,246 | 0 | 99.4% | Scaled pricing benchmark |
+| **Pipeline 5** | Architectural Rule ($\ge 300\text{ sqft/bhk}$) | 12,502 | 744 | 93.9% | Removed physical impossibilities |
+| **Pipeline 6** | Localized $1\sigma$ Price-per-Sqft Filter | 9,261 | 3,241 | 69.5% | Removed micro-market price extremes |
+| **Pipeline 7** | Multi-Location Visual Scatter Diagnostics | 9,261 | 0 | 69.5% | Verified cross-BHK pricing inversions |
+| **Pipeline 8** | Algorithmic Cross-Bedroom Inversion Pruning | **7,511** | **1,750** | **56.4%** | **Final production-grade training dataset** |
+
+---
+
+## ⚖️ Activity 7 (Day 7) — Enterprise Data Governance & Inferential Statistics Foundations
+
+> **Notebook**: [`day-7-data-governance-and-inferential-statistics.ipynb`](./day-7-data-governance-and-inferential-statistics.ipynb)  
+> **Core Concepts**: Data Governance vs. Data Management, The Six Enterprise Pillars, Descriptive vs. Inferential Statistics, The Four Pillars of Inference, Population vs. Sample, Null vs. Alternative Hypothesis ($H_0$ vs. $H_a$), $p$-Value Significance Thresholds ($\alpha = 0.05$), Confidence Intervals, Two-Sample Independent $t$-Testing (`scipy.stats`)
+
+### Workflow Overview
+
+```mermaid
+flowchart TD
+    subgraph G[Part 1: Enterprise Data Governance Architecture]
+        A["Organizational Data Assets"] --> P1["Accountability & Data Stewardship"]
+        A --> P2["Transparency & Lineage Tracking"]
+        A --> P3["Data Quality SLA (Accuracy & Completeness)"]
+        A --> P4["Security & Role-Based Access Control (RBAC)"]
+        A --> P5["Purpose Limitation & Explicit Consent"]
+        A --> P6["Data Retention & Automated TTL Lifecycle"]
+    end
+    subgraph I[Part 2: Inferential Decision Engine]
+        B["Target Population (All US Schools)"] --> S["Representative Sample Data"]
+        S --> H{"Hypothesis Formulation"}
+        H -->|"H0 (Null)"| H0["Public Rate = Private Rate (No Difference)"]
+        H -->|"Ha (Alternative)"| Ha["Public Rate ≠ Private Rate (Significant Difference)"]
+        H0 & Ha --> T["scipy.stats.ttest_ind(equal_var=False)"]
+        T --> P["p-value vs. α = 0.05 Threshold"]
+        P -->|"p < 0.05"| R1["Reject H0: Statistically Significant Disparity"]
+        P -->|"p ≥ 0.05"| R2["Fail to Reject H0: Observed Variation is Chance Fluke"]
+    end
+```
+
+---
+
+### Part 1: Strategic Enterprise Data Governance
+
+#### Data Governance vs. Data Management
+A critical enterprise distinction separating operational engineering from organizational strategy:
+- **Data Management (Execution)**: Writing Python scripts, running pipelines, wrangling schemas, handling missingness, engineering features, and querying databases.
+- **Data Governance (Strategy & Control)**: The overarching institutional constitution. It defines **who** has authorization to access data, **what** downstream purposes are permitted, **how** quality benchmarks are enforced, and **when** records must be purged.
+
+```mermaid
+flowchart LR
+    subgraph Ops[Data Management: Operational Mechanics]
+        M1[Pipeline Scripts] --> M2[Data Wrangling]
+        M2 --> M3[Model Training]
+    end
+    subgraph Gov[Data Governance: Strategic Guardrails]
+        G1[Access Permissions] --> G2[Quality Standards]
+        G2 --> G3[Retention Limits & Compliance]
+    end
+    Gov -.->|"Governs & Audits"| Ops
+```
+
+#### The Six Pillars of Enterprise Data Governance
+
+| Pillar | Operational Definition | Engineering Implementation | Enterprise Risk Mitigated |
+| :--- | :--- | :--- | :--- |
+| **1. Accountability** | Explicit designation of data owners and certified data stewards. | Data ownership metadata tagged to tables and schemas. | Neglected schemas, orphan pipelines, blame shifting. |
+| **2. Transparency** | Complete auditability of data origin, transformations, and lineage. | Automated data cataloging, commit-level provenance logs. | Regulatory non-compliance (GDPR/NDPR), unexplainable outputs. |
+| **3. Data Quality** | Rigorous automated standards for accuracy, validity, and completeness. | Schema assertions, CI/CD validation tests, Great Expectations. | Garbage-in, garbage-out; faulty financial/policy decisions. |
+| **4. Security** | Cryptographic controls and strict Role-Based Access Control (RBAC). | Encryption at rest/transit, principle of least privilege. | Unauthorized exfiltration, data leaks, credential theft. |
+| **5. Purpose Limitation** | Data collected for one objective cannot be repurposed without consent. | Feature-level tagging, policy-enforced query firewalls. | Customer trust erosion, regulatory penalties. |
+| **6. Data Retention** | Defined lifecycles and enforced Time-to-Live (TTL) expiration schedules. | Automated cron jobs purging stale logs and historical data. | Toxic liability storage, excessive storage costs. |
+
+---
+
+### Part 2: Inferential Statistics — The Mathematical Backbone of Machine Learning
+
+#### Why Inferential Statistics Drives Machine Learning
+Descriptive statistics merely summarizes observed sample data (the *sample in hand*). Inferential statistics uses probability theory to draw mathematically defensible conclusions about an unobserved wider population (the *pot of soup*):
+
+1. **Feature Selection**: Separates genuinely predictive predictors from stochastic noise ($p < 0.05$ significance tests).
+2. **A/B Testing & Causal Inference**: Validates whether conversion rate or revenue differences between treatment cohorts represent genuine product impact or random variance.
+3. **Model Validation**: Establishes whether a 1.2% ROC-AUC improvement reflects architectural superiority or random seed fluctuation.
+
+```mermaid
+flowchart LR
+    A["Descriptive Statistics"] -->|"Summarizes"| B["Observed Sample Data (What Happened)"]
+    C["Inferential Statistics"] -->|"Generalizes & Tests"| D["Universal Population Parameters (Truth)"]
+    D -->|"Powers"| E["Machine Learning Generalizability"]
+```
+
+#### The Four Pillars of Inference
+
+1. **Population vs. Sample**:
+   - **Population ($N$)**: The exhaustive universe of interest (e.g., all 130,000 schools in the United States).
+   - **Sample ($n$)**: The observed subset subjected to empirical measurement.
+2. **The Null Hypothesis ($H_0$) vs. Alternative Hypothesis ($H_a$)**:
+   - **Null Hypothesis ($H_0$)**: Presumption of no difference or no effect ("Innocent until proven guilty beyond a reasonable doubt").
+   - **Alternative Hypothesis ($H_a$)**: The assertion of a real, systemic disparity or effect.
+3. **The $p$-Value Decision Threshold**:
+   - The exact probability of observing sample statistics as extreme as those measured, assuming $H_0$ is true.
+   - **Decision Rule**:
+     $$\text{If } p \le 0.05 \implies \text{Reject } H_0 \quad (\text{Statistically Significant})$$
+     $$\text{If } p > 0.05 \implies \text{Fail to Reject } H_0 \quad (\text{Insufficient Evidence})$$
+4. **Confidence Intervals (CI)**:
+   - A mathematical bracket (typically 95%) guaranteed to contain the true population parameter across repeated sampling.
+
+---
+
+### Hands-On Case Study: U.S. Educational System Graduation Rate Disparity
+
+- **Dataset**: `us_education_system_dataset.csv`
+- **Business Question**: Do private secondary schools achieve statistically significantly higher graduation rates than public secondary schools, or is the observed delta an artifact of random sampling variance?
+- **Hypothesis Formulation**:
+  $$H_0: \mu_{\text{public}} = \mu_{\text{private}} \quad (\text{Equal mean graduation rates})$$
+  $$H_a: \mu_{\text{public}} \ne \mu_{\text{private}} \quad (\text{Statistically different graduation rates})$$
+- **Code Implementation**:
+  ```python
+  import pandas as pd
+  import numpy as np
+  from scipy import stats
+
+  # Load institutional education dataset
+  us_edu_data = pd.read_csv('us_education_system_dataset.csv')
+
+  # Isolate cohorts
+  public_schools = us_edu_data[us_edu_data['School_Type'] == 'Public']['Graduation_Rate'].dropna()
+  private_schools = us_edu_data[us_edu_data['School_Type'] == 'Private']['Graduation_Rate'].dropna()
+
+  # Perform two-sample independent t-test (Welch's t-test for unequal variances)
+  t_stat, p_value = stats.ttest_ind(public_schools, private_schools, equal_var=False)
+
+  print(f"Public Mean: {public_schools.mean():.2f}% | Private Mean: {private_schools.mean():.2f}%")
+  print(f"t-statistic: {t_stat:.4f} | p-value: {p_value:.4e}")
+
+  # Decision logic
+  alpha = 0.05
+  if p_value < alpha:
+      print("Conclusion: Reject H0. Significant disparity in institutional graduation rates.")
+  else:
+      print("Conclusion: Fail to Reject H0. No statistically significant difference detected.")
+  ```
+
+---
+
+### Activity 7 Strategic Framework Matrix
+
+| Dimension | Descriptive Domain | Inferential Domain | Enterprise Governance Domain |
+| :--- | :--- | :--- | :--- |
+| **Core Question** | "What does our sample data look like?" | "What does this tell us about the broader reality?" | "Are we ethically, legally, and reliably permitted to use this data?" |
+| **Primary Metric** | Mean, Median, Mode, Variance, IQR | $t$-statistic, $z$-score, $p$-value, 95% CI | SLA uptime, Lineage accuracy, Retention TTL |
+| **Analytical Scope** | Sample-confined | Universal / Population-wide | Organizational / Regulatory |
+| **Failure Mode** | Miscalculation / Skewness oversight | Type I Error ($\alpha$), Type II Error ($\beta$) | Data breach, regulatory fine, ethical breach |
+
+---
+
+## 🧩 End-to-End Pipeline Synthesis (Days 1–7)
 
 | Stage | Activity | Key Challenge Solved | Primary Tool / Technique | Core Analytical Deliverable |
 | :--- | :--- | :--- | :--- | :--- |
@@ -529,6 +838,8 @@ flowchart LR
 | **Phase 3** | **Aggregation & Reporting** | Condensing granular rows into macro policy insights | `.groupby()`, `.agg()`, hierarchical grouping | Multi-metric ROI report cards & geographic allocation plan |
 | **Phase 4** | **Architectural Imputation** | Handling skewness, sentinel evolution & subgroup variance | Nullable `Int32`, median patching, group-based fill | Production-grade clean dataframe with zero statistical drift |
 | **Phase 5** | **Domain-Driven Outlier Engineering** | Detecting physical impossibilities & non-standard ranges | Range parsers, `price_per_sqft`, domain thresholding | Removed 744 spatial anomalies; produced 12,502 clean records |
+| **Phase 6** | **Statistical & Algorithmic Outlier Engineering** | Trimming micro-market price variance & cross-tier pricing inversions | Localized $\pm 1\sigma$ filtration (`remove_pps_outliers`), scatter diagnostics, algorithmic benchmark lookup tables (`remove_bhk_outliers`) | Clean production dataset refined to 7,511 high-integrity records (43.6% total noise pruned) |
+| **Phase 7** | **Data Governance & Inferential Statistics** | Institutional compliance & separating genuine signals from stochastic noise | 6 Governance Pillars, Null Hypothesis Significance Testing, Welch's $t$-test (`scipy.stats`) | Enterprise data governance policy matrix & hypothesis testing engine |
 
 ---
 
@@ -537,7 +848,7 @@ flowchart LR
 ### Prerequisites
 - Python 3.8+
 - Jupyter Notebook / JupyterLab or VS Code Jupyter Extension
-- Required packages: `pandas`, `numpy`, `matplotlib`, `seaborn`
+- Required packages: `pandas`, `numpy`, `scipy`, `matplotlib`, `seaborn`
 
 ### Installation & Environment Setup
 ```bash
@@ -554,7 +865,7 @@ python -m venv venv
 source venv/bin/activate
 
 # 3. Install dependencies
-pip install pandas numpy matplotlib seaborn jupyter
+pip install pandas numpy scipy matplotlib seaborn jupyter
 ```
 
 ### Running the Notebooks
@@ -575,6 +886,12 @@ jupyter notebook day-4-data-wrangling-and-missing-data.ipynb
 
 # Run Day 5: Outlier Detection, Spatial Engineering & Domain-Driven Filtration
 jupyter notebook day-5-outlier-outlier-detection.ipynb
+
+# Run Day 6: Advanced Statistical Outlier Engineering & Algorithmic Filtration
+jupyter notebook day-6-outlier-outlier-detection.ipynb
+
+# Run Day 7: Enterprise Data Governance & Inferential Statistics
+jupyter notebook day-7-data-governance-and-inferential-statistics.ipynb
 ```
 
 ---
@@ -585,12 +902,16 @@ jupyter notebook day-5-outlier-outlier-detection.ipynb
 - [x] **Day 2**: Compound Boolean Filtering, Policy Slicing, Vulnerability Subsetting, and Anomaly Auditing.
 - [x] **Day 3**: Multi-Dimensional Aggregation, Hierarchical Grouping, and Multi-Metric Report Cards.
 - [x] **Day 4**: Missing Data Architecture, Sentinel Evolution, Skewness Imputation, and Subgroup Mean Patching.
-- [x] **Day 5**: Exploratory Data Analysis for Outliers, Multi-Stage Pipeline Architecture & Domain-Driven Filtration.
-- [ ] **Day 6**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
-- [ ] **Day 7**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
-- [ ] **Day 8**: Predictive Machine Learning Modeling & Deployment.
+- [x] **Day 5**: Exploratory Data Analysis for Outliers, Multi-Stage Pipeline Architecture & Domain-Driven Filtration ($\ge 300\text{ sqft/bhk}$).
+- [x] **Day 6**: Advanced Statistical Outlier Engineering, $\mu \pm 1\sigma$ Location Filtering, Visual Scatter Diagnostics & Algorithmic Cross-BHK Anomaly Removal.
+- [x] **Day 7**: Enterprise Data Governance Frameworks & Inferential Statistics Foundations (Hypothesis Testing, $p$-values, Independent $t$-tests).
+- [ ] **Day 8**: Feature Transformation, Numerical Scaling & Categorical Encoding (One-Hot, Ordinal).
+- [ ] **Day 9**: Exploratory Data Analysis (EDA) & Multivariate Visualizations.
+- [ ] **Day 10**: Predictive Machine Learning Modeling & Deployment.
 
 ---
 
 ## 📄 License
 This project is open source and available under the [MIT License](LICENSE).
+
+

@@ -34,3 +34,6 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
+
+# Nested local clones / working directories
+Data-Science-Development/
